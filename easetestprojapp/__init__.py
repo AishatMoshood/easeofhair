@@ -17,6 +17,5 @@ db = SQLAlchemy(app)
 
 mail = Mail(app)
 
-
 from easetestprojapp.myroutes import adminroutes, userroutes, salonroutes
 from easetestprojapp import forms, mymodels
