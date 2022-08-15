@@ -4,7 +4,7 @@ class Config(object):
     PASSWORD = 'password'
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root@127.0.0.1/easetest'
+    # SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root@127.0.0.1/easetest'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     MERCHANT_ID = 't98765@0'
 
