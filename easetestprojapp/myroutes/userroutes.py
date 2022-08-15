@@ -1,7 +1,6 @@
 import math
 import random
 import os
-from zoneinfo import available_timezones
 import requests
 import json
 import re
