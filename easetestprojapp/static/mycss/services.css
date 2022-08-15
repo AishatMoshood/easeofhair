@@ -1,0 +1,69 @@
+:root {
+  --red-main: #d90429;
+  --bg: #edf2f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: poppins, arial, "sans-serif";
+  overflow-x: hidden;
+  background-color: transparent;
+  background-image: url(../images/salon.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+main > div {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.menu-banner {
+  background-image: none;
+  min-height: 80px;
+}
+
+.menu-banner .container-fluid {
+  padding: 0 1px !important;
+}
+
+.logo {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.sec1 {
+  color: #1c1f20;
+  text-align: center;
+}
+
+.sec1 .serv {
+  width: 80%;
+  margin: auto;
+  text-align: justify;
+  font-weight: 500;
+}
+
+.sec1 .serv h1 {
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.sec2 {
+  background-color: #fff;
+}
+
+.sec2 .row {
+  width: 98%;
+  margin: auto;
+}
+
+.sec2 .col-md-6 {
+  background-color: #ddd;
+}

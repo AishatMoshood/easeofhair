@@ -1,0 +1,437 @@
+		{% extends 'user/navlayout.html' %}
+			{% block css %}
+			<title>Ease of Hair: Home</title>	
+			{% endblock css %}
+
+
+			{% block navpagecontent %}
+			<header class="menu-banner">
+				<div class="row">
+					<div class="col-12">
+						<div id="carouselExampleFade" class="carousel slide carousel-fade" 				data-bs-ride="carousel">
+							<div class="carousel-inner">
+							  <div class="carousel-item active" data-bs-interval="3000">
+								<img src="/static/images/banner51.jpg" class="d-block w-100 img-fluid" alt="...">
+							  </div>
+							  <div class="carousel-item" data-bs-interval="4000">
+								<img src="/static/images/banner3.jpg" class="d-block w-100" alt="...">
+							  </div>
+							  <div class="carousel-item" data-bs-interval="5000">
+								<img src="/static/images/banner2.jpg" class="d-block w-100" alt="...">
+							  </div>
+							  <div class="carousel-item" data-bs-interval="5000">
+								<img src="/static/images/banner31.jpg" class="d-block w-100" alt="...">
+							  </div>
+							  <div class="carousel-item" data-bs-interval="5000">
+								<img src="/static/images/banner5.jpg" class="d-block w-100" alt="...">
+							  </div>
+							</div>
+						  </div>
+					</div>
+				</div>
+
+				
+				<div class="row">
+					<div class="col-md-12">
+						<nav class="navbar navbar-expand-lg">
+							<div class="container-fluid">
+								
+								<a class="navbar-brand" href="/">
+									<img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/>
+								</a>
+								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="navbar-toggler-icon">
+										<i class="fa-solid fa-bars text-dark mt-2 text-lg"></i>
+									</span>
+								</button>
+
+								<div class="collapse navbar-collapse pb-3" id="navbarSupportedContent">
+									
+									<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+										<li class="nav-item">
+											<a class="nav-link active" aria-current="page" href="/">Home</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/about">About</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#services">Services</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/all/salons">Salons</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#featured-salons">Book</a>
+										</li>
+										
+										{% if session.get('loggedin') != None %}
+									
+											<li class="nav-item">
+												<a class="nav-link" href="{{url_for('userdash')}}">My Dashboard</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" href="{{url_for('logout')}}">Log Out</a>
+											</li>
+										{% elif session.get('salon_loggedin') != None %}
+		
+											<li class="nav-item">
+												<a class="nav-link" href="{{url_for('salon_dashboard')}}">My Dashboard</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" href="{{url_for('salon_logout')}}">Log Out</a>
+											</li>
+										{% else %}
+											<li class="nav-item">
+												<a class="nav-link" href="/signup">Sign Up</a>
+											</li>
+
+											<li class="nav-item dropdown">
+												<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+												  Login
+												</a>
+												<ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+													<li><hr class="dropdown-divider"></li>
+												  <li><a class="nav-link dropdown-menu-a" href="{{url_for('user_login')}}">Customer Login</a></li>
+												  <li><hr class="dropdown-divider"></li>
+												  <li style="z-index: 100;"><a class="nav-link dropdown-menu-a" href="{{url_for('salon_login')}}">Salon Login</a></li>
+												  <li><hr class="dropdown-divider"></li>
+												</ul>
+											  </li>
+										{% endif %}
+									</ul>
+	
+									<form class="d-flex">
+										<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+										<button class="btn btn-outline-light srhbtn" type="submit">Search</button>
+									</form>
+	
+	
+								</div>
+								
+							</div>
+						</nav>
+					</div>
+
+
+					<div class="col-12 slogan text-center p-5">
+					
+						<h1>EASE OF <span>HAIR</span></h1>
+						<h2 class="mt-3"><span>Find salons</span> near you Easily.</h2>	
+
+						<p><a href="/all/salons" class="btn btn-lg my-4 booknow">Book Now</a></p>
+					
+					<form action="/user/search" method="post" class="search-form">
+						<div>
+							<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+						</div>
+						<div class="row g-lg-0 p-2">
+							<div class="col-lg-3">
+								<label for="search-key" class="visually-hidden"></label>
+								<input type="search" name="searchkey" id="search-key" placeholder="Search Salon" class="form-control">
+							</div>
+
+							<div class="col-lg-3">
+								<select name="locationdrop" id="location-drop" class="form-control">
+									<option value="">Location</option>
+									<option value="lagos">Lagos</option>
+									<option value="abuja">Abuja</option>
+									<option value="kwara">Kwara</option>
+									<option value="delta">Delta</option>
+								</select>
+							</div>
+
+							<div class="col-lg-3">
+								<select name="servicedrop" id="service-drop" class="form-control">
+									<option value="">Service Type</option>
+									{% for j in service_type %}
+										<option value="{{j.servtype_id}}">{{j.servtype_name}} {{j.servtype_id}}</option>
+									{% endfor %}
+								</select>
+							</div>
+
+							<div class="col-lg-3">
+								<button type="submit" id="search-drop-btn" class="btn btn-dark" style="width:100%">Search</button>
+							</div>
+						</div>
+					</form>
+					</div> <!--slogan end-->
+					<hr>
+				</div>	
+	
+			</header>
+
+
+			
+
+			<section class="salon mt-4 pb-5">
+				
+				<div class="services row g-md-1 g-sm-5 p-5 pb-0" id="services">
+					
+					<h1 class="text-center pb-3 mb-5">Our Services</h1>
+
+					<div class="col-md-12 mb-md-5 mb-sm-3">
+						<div class="row">
+							<div class="col-md-6 serv-box">
+								<div class="row">
+									<div class="col-md-6 m-3">
+										<ul>
+											{% for n in servs51 %}
+											<li>{{n.servtype_name|capitalize}}</li>
+											{%  endfor %}
+										</ul>
+										<h4 class="text-muted">and more...</h4>
+									</div>
+
+									<div class="col-md-5">
+										<div class="shape1">	
+										</div>
+									</div>
+								</div>
+							</div>
+
+						<div class="col-md-6 serv-box">
+							<div class="row">
+								<div class="col-md-6 m-3">
+									<ul>
+										{% for n in servs52 %}
+										<li>{{n.servtype_name|capitalize}}</li>
+										{%  endfor %}
+									</ul>	
+									<h4 class="text-muted">and more...</h4>
+								</div>
+
+								<div class="col-md-5">
+									<div class=" shape2">	
+									</div>
+								</div>
+							</div>
+						</div>
+
+						</div>
+					</div>
+
+					<div class="col-lg-2 col-md-4 small-col1">
+  						<img src="/static/images/sm1.jpg" class="card-img-top img-fluid small-img1" alt="Women in salon">
+					</div>
+
+					<div class="col-lg-2 col-md-3 small-col2">
+  						<img src="/static/images/sm2.jpg" class="card-img-top img-fluid small-img2" alt="Women in salon">
+					</div>
+
+					<div class="col-lg-2 col-md-4 small-col3">
+						<img src="/static/images/sm3.jpg" class="card-img-top img-fluid small-img3" alt="Women in salon">
+					</div>
+
+					<div class="col-lg-2 col-md-3 small-col2">
+							<img src="/static/images/sm4.jpg" class="card-img-top img-fluid small-img4" alt="Women in salon">
+					</div>
+
+					<div class="col-lg-2 col-md-4 small-col5">
+						<img src="/static/images/sm5.jpg" class="card-img-top img-fluid small-img5" alt="Women in salon">
+					</div>
+
+					<div class="col-lg-2 col-md-3 small-col6">
+							<img src="/static/images/sm6.jpg" class="card-img-top img-fluid small-img6" alt="Women in salon">
+					</div>
+
+					<div class="col-lg-2 col-md-4">
+  						<img src="/static/images/sm7.jpg" class="card-img-top img-fluid" alt="Women in salon">
+					</div>
+
+					<div class="col-lg-2 col-md-3">
+  						<img src="/static/images/sm8.jpg" class="card-img-top img-fluid" alt="Women in salon">
+					</div>
+
+					<div class="col-lg-2 col-md-3">
+						<img src="/static/images/sm5.jpg" class="card-img-top img-fluid" alt="Women in salon">
+				  </div>
+
+				  <div class="col-lg-2 col-md-3">
+						<img src="/static/images/sm6.jpg" class="card-img-top img-fluid" alt="Women in salon">
+				  </div>
+
+				  <div class="col-lg-2 col-md-3">
+						<img src="/static/images/sm7.jpg" class="card-img-top img-fluid" alt="Women in salon">
+				  </div>
+
+				  <div class="col-lg-2 col-md-4">
+						<img src="/static/images/sm8.jpg" class="card-img-top img-fluid" alt="Women in salon">
+				  </div>
+				
+			</section>
+			<hr>
+
+			<section class="salons-sec text-center col-md-12" id="featured-salons">
+				<div class="row">
+					<div class="col-12">
+						<h1>Featured Salons</h1>
+
+						<div class="row">
+							<div class="col-md-12 ">
+								<div class="row p-5 g-3">
+									{% for i in all_salons %}
+									<div class="col-lg-4 col-md-6">
+										<div class="card">
+											{% if i.salon_image == None %}
+												<img src="/static/images/sm3.jpg" class="card-img-top salon-img" alt="Salon default Image" >
+											{% else %}
+												<img src="/static/salon_images/{{i.salon_image}}" class="card-img-top salon-img" alt="Salon banner Image">
+											{% endif %}
+											<div class="card-body">
+												{% if 'salon'.lower() in i.salon_name: %}
+													<h5 class="card-title">{{i.salon_name|capitalize}}</h5>
+												{% else %}
+													<h5 class="card-title">{{i.salon_name|capitalize}} Salon</h5>
+												{% endif %}
+												
+												<div class="card-line"></div>
+												{% if '.' in i.salon_address %}
+													<p><i class="fa fa-map-marker star-addcolor" aria-hidden="true" class="pe-3"></i> {{i.salon_address|capitalize}}</p>
+												{% else %}
+												<p><i class="fa fa-map-marker" aria-hidden="true" class="pe-3"></i>{{i.salon_address|capitalize}}.</p>
+												{% endif %}
+
+												
+												<p class="card-text" style="font-weight: 600;"> Some of their services: 
+													{% for j in i.salonobj_serv[:4] %}<li>{{j.servtypeserv.servtype_name}}</li>{% endfor %}
+												</p>
+											
+												
+												<p><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></p>
+												<div class="card-line"></div>
+												<a href="/book/salon/{{i.salon_id}}" class="btn">Book Now</a>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+		
+								</div> <!--cards row end-->
+							</div><!--2nd col-12 end-->
+						</div>
+
+						{% if sal_count > 3 %}
+							<div class="text-center">
+								<a href="/all/salons" class="btn btn-lg btn-danger">View More</a>
+							</div>
+						{% endif %}
+					</div>
+				</div>			
+			</section>
+
+			
+			<section class="trust my-5 text-center">
+				<div class="row py-5">
+					<div class="col-lg-3 col-md-6">
+						<p><i class="fa-solid fa-users-gear"></i></p>
+						<h5>Trusted By Thousands</h5>
+						
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<p><i class="fa-solid fa-house-chimney-user"></i></p>
+						<h5>Choose a Salon From Home</h5>
+						
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<p><i class="fa-solid fa-shop"></i></p>
+						<h5>Wide Range of Salons</h5>
+						
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<p><i class="fa-solid fa-money-bill-1-wave"></i></p>
+						<h5>Affordable</h5>
+						
+					</div>
+				</div>
+			</section>
+
+			<section class="recent">
+				<div class="row text-center p-5 pt-0">
+					<div class="col-md-12">
+						<h1 class="mb-5">Recently Added Salons</h1>
+
+						<div class="row">
+							{% for r in recent_sals %}
+							<div class="col-md-4">
+								
+								<div class="card mb-5 cardd">
+									{% if r.salon_image == None %}
+									<img src="/static/images/sm3.jpg" class="card-img-top salon-img" alt="Default salon banner image">
+									{% else %}
+									<img src="/static/salon_images/{{r.salon_image}}" class="card-img-top salon-img" alt="Salon banner image">
+									{% endif %}
+									<div class="card-body">
+										{% if 'salon'.lower() in r.salon_name: %}
+											<h5 class="card-title">{{r.salon_name|capitalize}}</h5>
+										{% else: %}
+											<h5 class="card-title">{{r.salon_name|capitalize}} Salon</h5>
+										{% endif %}
+												
+										<p class="mt-3"><i class="fa fa-map-marker" aria-hidden="true"></i> {{r.salon_address}}</p>
+										<p class="card-text text-left pt-3" style="font-weight: 600;"> <span  class="d-flex justify-content-start ps-4">Some of their services: </span>
+											{% for j in r.salonobj_serv[:4] %}
+											
+											<li class="d-flex justify-content-start ps-4"><b class="me-2">-</b> {{j.servtypeserv.servtype_name|capitalize}}</li>
+										
+										{% endfor %}
+										</p>
+		
+										<div class="row">
+											<div class="col-6">
+												<i class="fa-solid fa-users"></i> <span style="margin-left: 7px;">Over  10 </span> <span style="margin-left: 32px;"> stylists</span>
+											</div>
+		
+											<div class="col-6" >
+												{% for s in recent_sals %}
+													<ul>
+													{% for t in s.salonobj_serv[0:1] %}
+													<li>{{t.servtypeserv.servtype_name}} and more</li>
+													{% endfor %}
+													</ul>
+												{% endfor %}
+											</div>
+										</div>
+		
+										<a href="/book/salon/{{r.salon_id}}" class="btn">Book Now</a>
+									</div>	<!--closing card-body-->
+								</div><!--closing card-->
+								
+							</div>
+							{% endfor %}
+						</div>
+
+					</div>
+				
+				</div><!--recent row end-->
+			</section>
+
+			<section class="reviews mt-5">
+				<div class="row p-5">
+					<div class="col-md-12">
+						<h1 class=" text-center">Reviews</h1>
+
+						<div class="row g-3">
+							<div class="col-md-6">
+								Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas blanditiis quasi, dolore voluptates dolor repudiandae eveniet, sint illum eius ullam itaque amet nesciunt voluptatum neque ad hic saepe esse possimus.
+							</div>
+	
+							<div class="col-md-6">
+								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis quibusdam, excepturi eum delectus, ab, temporibus aut exercitationem officia accusamus repudiandae soluta. Rem quam nesciunt accusantium reprehenderit provident, neque reiciendis ipsa.
+							</div>
+						</div>
+
+					</div>			
+				</div>
+			</section>
+			{% endblock navpagecontent %}
+
+		
+			{% block js %}
+			<script src="/static/myjs/hairzy.js" type="text/javascript" language="javascript"></script>
+			{% endblock js %}
+		
+	

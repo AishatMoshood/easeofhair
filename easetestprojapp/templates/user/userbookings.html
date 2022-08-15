@@ -1,0 +1,120 @@
+{% extends 'user/layout2.html' %}
+
+{% block paymenttitle %}
+<link rel="stylesheet" type="text/css" href="/static/mycss/userdashboard.css">
+<title>Ease of Hair: Bookings</title>
+{% endblock paymenttitle %}	
+
+{% block paymentcontent %}
+
+		<div class="body">
+                <header class="menu-banner p-4">
+
+                    <div class="row"> <!--logo row-->
+                        <div class="col-12 d-flex justify-content-between">
+                            <p><a href="/"><img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/></a></p>
+
+                            <div class="d-flex justify-content-between">
+                                <p class="me-5 mt-1">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span class="ms-1">Hi, {{custdeets.cust_fname|capitalize}}</span> 
+                                </p>
+
+                                <p>
+                                    <a href="/all/salons">
+                                        <i class="fa-solid fa-book-open"></i>
+                                        <span>Book</span> 
+                                    </a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div> <!--end of logo row-->
+                </header>
+
+
+			<section>
+				<div class="row">
+
+                    <div class="col-md-3 p-md-4 p-sm-4 nav-side user-nav">
+                        <div class="nav-item bars">
+							<p class="invisible home"><a class="ms-3" aria-current="page" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></p>
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</div>
+						
+						<div class="main-nav">
+				
+                            <p class="nav-item">
+                                <i class="fa fa-user" aria-hidden="true"></i><a class="ms-3" aria-current="page" href="/userdashboard">Profile</a>
+                            </p>
+
+                            <p class="nav-item">
+                                <i class="fa-solid fa-book-open"></i><a class=" ms-3" href="/user/bookings">Bookings</a>
+                            </p>
+
+                            <p class="nav-item">
+                                <i class="fa-solid fa-money-bill-1"></i> <a class="ms-3" href="/user/dashboard/payment">Payments</a>
+                            </p>
+
+                            <p class="nav-item">
+                                <i class="fa-solid fa-gear"></i> <a class="ms-3" href="/user/settings">Settings</a>
+                            </p>
+
+                            <p class="nav-item">
+                                <i class="fa-solid fa-power-off"></i> <a class="ms-3" href="{{url_for('logout')}}">Log Out</a>
+                            </p>
+
+                        </div> 
+                </div>
+
+					<div class="col-md-9 mt-5 px-md-5">
+							<div class="d-flex justify-content-between px-md-5 heading">
+								<h1 class="px-sm-4 heading1">My Account</h1>
+								<p class="set"><a href="/user/settings">Settings</a></p>
+							</div>
+	
+							<div class="mt-5 px-md-5">
+								<h4 class="book-heading">Your Bookings</h4>
+                                {% if b %}
+                                <table class="table table-bordered table-striped mt-5 text-center">
+                                    <thead class="table-dark">
+                                        <tr >
+                                            <th scope="col" class=" py-3">#</th>
+                                            <th scope="col" class=" py-3">Salon Name</th>
+                                            <th scope="col" class=" py-3">Salon Address</th>
+                                            <th scope="col" class=" py-3">Salon Phone Number</th>
+                                            <th scope="col" class=" py-3">Date Booked</th>
+                                            <th scope="col" class=" py-3">Time Booked</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        
+                                        {% for i in b %}
+                                        <tr>
+                                            <td>{{loop.index}}</td>
+                                            <td scope="row">
+                                               {{i.salonbook.salon_name}}
+                                            </td>
+                                            <td>{{i.salonbook.salon_address}}</td>
+                                            <td>{{i.salonbook.salon_phone}}</td>
+                                            <td>{{i.book_date}}</td>
+                                            <td>{{i.book_time}}</td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                    <h6 class="mt-3 msg">{{msg}}</h6>
+                                {% endif %}                                            
+                                <hr>	
+                            </div><!--end of Readonly profile-->
+					</div>
+
+				
+                    
+				</div>
+			</section>
+        </div>
+		{% endblock paymentcontent %}

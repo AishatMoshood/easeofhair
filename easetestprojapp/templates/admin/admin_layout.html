@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="desc" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="Aishat Moshood">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/static/faicons/css/all.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/mycss/admin.css">
+
+		<title>Ease of Hair: Dashboard</title>	
+	</head>
+
+	<body>
+		<div class="container-fluid">
+                    <div class="row"> <!--logo row-->
+
+                            <div class="col-md-2 sec1 p-4 ps-3">
+                                <p><a href="/"><img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/></a></p>
+
+                                <div class="my-5">
+                                    <label for="search-key" class="visually-hidden"></label>
+                                    <input type="search" name="search-key" id="search-key" placeholder="Search " class="form-control">
+                                </div>
+                                
+                                <p><i class="fa-solid fa-shop"></i><a href="/admin/dashboard">Dashboard</a></p>
+                                <p><i class="fa-solid fa-shop"></i><a href="/admin/salons">Salons</a></p>
+                                <p><i class="fa fa-plus" aria-hidden="true"></i><a href="/admin/active/salon">Active Salons</a></p>
+                                <p><i class="fa-solid fa-bell-concierge"></i><a href="/admin/services">Services</a></p>
+                                <p><i class="fa fa-users" aria-hidden="true"></i><a href="/admin/users">Customers</a></p>
+                                <p><i class="fa-solid fa-money-check-dollar"></i><a href="">Payments</a></p>
+                                <hr class="mt-5 mb-4">
+
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i><a href="">Messages</a></p>
+                                <p><i class="fa fa-tasks" aria-hidden="true"></i><a href="">Tasks</a></p>
+                                <p><i class="fa fa-gears" aria-hidden="true"></i><a href="">Settings</a></p>
+                                <p><i class="fa-solid fa-power-off"></i><a href="/admin/logout">Log Out</a></p>
+                            </div>
+                            
+                            {% block adminlayout %}
+
+                            <div class="col-md-10">
+                                  
+                                <div class="row px-3">
+                                    <div class="col 12">
+
+                                        <div class="sub1 px-3 py-2 pt-3 d-flex justify-content-between">
+                                            <div>
+                                                <h1 class="text-dark"><i class="text-dark" aria-hidden="true"> Overview</h1>
+                                            </div>
+            
+                                            <div >
+                                              
+                                                <a href="">
+                                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                                    <span>Hi, {{admindeets.admin_username}}!</span> 
+                                                </a>
+        
+                                            </div>
+                                        </div> <!--sub1 end-->
+        
+                                    </div>
+                                </div>
+
+                                <div class="row sub2 g-4 p-3 mt-3"><!--sub2-->
+
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p><i class="fa-solid fa-shop"></i></p>
+                                                <h5 class="card-title">Registered Salons</h5>
+                                                <h4 class="card-subtitle mb-2">{{tot_sals|count}}</h2>  
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p><i class="fa-solid fa-shop"></i></p>
+                                                <h5 class="card-title">Active Salons</h5>
+                                                <h4 class="card-subtitle mb-2">{{act_sals|count}}</h4>  
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p><i class="fa fa-users"></i></p>
+                                                <h5 class="card-title">Registered Users</h5>
+                                                <h4 class="card-subtitle mb-2">{{tot_cust|count}}</h4>  
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p><i class="fa-solid fa-money-check-dollar"></i></p>
+                                                <h5 class="card-title">Transactions</h5>
+                                                <h4 class="card-subtitle mb-2 text-muted"></h4>  
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div><!--sub2 end-->
+
+                
+                            </div><!--end of main col-md-10-->
+                            {% endblock adminlayout %}
+
+                    </div> <!--end of logo row-->
+               
+		</div>
+
+		
+		<script src="/static/js/bootstrap.bundle.min.js" type="text/javascript" language="javascript"></script>
+		<script src="/static/jquery/jquerymin.js" type="text/javascript" language="javascript"></script>
+
+		<script type="text/javascript" language="javascript">
+			
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,58 @@
+{% extends 'admin/admin_layout.html' %}
+{% block adminlayout %}
+        
+<main class="col-md-9 offset-md-1 m-auto px-md-4 text-center">
+    <div class="sub1 px-3 py-2 pt-3 d-flex justify-content-between mb-5">
+        <div>
+            <p><i class="" aria-hidden="true"> Overview</p>
+        </div>
+
+        <div >
+            <a href="" class="me-3">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+            </a>
+
+            <a href="">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>Hi, {{admindeets.admin_username}}!</span> 
+            </a>
+
+        </div>
+    </div> 
+
+    <div style="text-align:right"><a href="/admin/addservice" class="btn btn-lg btn-dark m-4">Add Service</a></div>
+      
+        {% with m = get_flashed_messages() %}
+            {% if m %}
+                {% for n in m %}
+                    <p class="alert alert-success">{{n}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h1>Services</h1>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Services</th>
+                    <th scope="col">Service Price(N)</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if servs %}
+                {% for s in servs %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{s.servtype_name}}</td>
+                    <td>{{s.servtype_price|int}}</td>
+                    <td><a href="/admin/delete/service/{{s.servtype_id}}" class="btn btn-sm btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+
+               
+            </tbody>
+    </table>
+</main>
+{% endblock %}

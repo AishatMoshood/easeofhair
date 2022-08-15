@@ -1,0 +1,312 @@
+:root {
+  --red-main: #d90429;
+  --bg: #edf2f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: poppins, arial, "sans-serif";
+  overflow-x: hidden;
+  background-color: #cb997e;
+  background-image: url(../images/banner51.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #fff;
+}
+
+.navbar {
+  position: absolute;
+  top: 10px;
+  z-index: 10;
+  width: 100%;
+}
+
+.logo {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.navbar .container-fluid {
+  width: 95%;
+  margin: auto;
+}
+
+.navbar-collapse a {
+  color: #fff;
+  margin-right: 1em;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'PT Serif', serif;
+  font-style: oblique;
+  
+}
+
+.navbar-collapse a:hover {
+  color: var(--red-main);
+  font-size: 18px;
+  color: #fff;
+  border: 3px solid #fff;
+  animation: pulse 1s;
+  animation-timing-function: ease-in;
+}
+
+@keyframes pulse {
+  0% {
+    font-size: 18px;
+  }
+  25% {
+    font-size: 20px;
+  }
+  50% {
+    font-size: 22px;
+  }
+  100% {
+    font-size: 16px;
+  }
+}
+
+.navbar-collapse .dropdown a:active{
+  color: #fff;
+}
+
+.navbar-collapse .dropdown a:focus{
+  color: #fff;
+}
+
+.navbar-collapse .dropdown a:hover{
+  color: #fff;
+}
+
+.navbar-collapse .dropdown a:visited{
+  color: #fff;
+}
+
+.navbar-collapse .dropdown-menu a{
+  border-radius: 0;
+}
+
+.navbar-collapse .dropdown-menu a{
+  color: #000;
+  font-size: 16px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.navbar-collapse .dropdown-menu a:active {
+  color: #000;
+}
+
+.navbar-collapse .dropdown-menu a:visited {
+  color: #000;
+}
+
+.navbar-collapse .dropdown-menu:focus {
+  color: #000;
+}
+
+.heading, .heading-reset {
+  position: absolute;
+  top: 20%;
+  left: 52%;
+  transform: translateX(-50%);
+  background-color: rgba(0,0,0, 0.6);
+  padding: 0px 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-family: 'Dancing Script',cursive;
+  font-size: 30px;
+}
+
+.login-form {
+  width: 35%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+  transform: translate(100%, 70%);
+}
+
+.login-form input {
+  width: 25em;
+  border: none;
+  padding: 18px 15px;
+  font-size: 17px;
+  border-radius: 20px;
+  color:#fff;
+  margin-bottom: 15px;
+}
+
+.login-form .input {
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 20px;
+  font-weight: 500;
+  color:#fff;
+}
+
+input[type="email"],
+input[type="password"] {
+  color:#fff;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  text-indent: 20px;
+  transition: 0.3s;
+}
+
+input[type="submit"] {
+  background-color: #9d0615 !important;
+  color: #fff;
+  font-size: 19px;
+  width: 100%;
+}
+
+.login-form .input::placeholder {
+  color: #fff;
+}
+
+.login-form p {
+  font-size: 15px;
+}
+
+.log-forg {
+  color: #eee;
+  font-size: 12px;
+}
+
+.bolded a{
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+   text-decoration: none;
+}
+
+.bolded a:hover {
+  padding-left: 10px;
+  font-size: 20px;
+  transition: 0.3s;
+  text-transform: underline;
+}
+
+.reset-email {
+  margin-top: 6em;
+}
+
+.heading-reset {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media screen and  (max-width: 1025px){
+  .navbar-collapse a {
+    font-size: 15px;
+    white-space: nowrap;  
+  }  
+
+  .login-form {
+    margin-top: 20px;
+  }
+}
+
+@media screen and  (max-width: 769px){
+  .navbar {
+    background-color: rgba(0,0,0, 0.85);
+    margin-top: -10px;
+  }
+  
+  .login-form {
+    margin-top: -25px;
+  }
+
+  .heading-reset {
+    font-size: 16px;  
+  }
+}
+
+@media screen and (max-width: 500px){
+  .heading, .heading-reset {
+    padding-top: 10px;
+    font-size: 20px;
+  }
+  
+  .login-form {
+    width: -50%;
+    transform: translate(0%, 70%);
+    margin: -35px 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-form input{
+    width: 250% !important;
+    margin: 0 auto 15px;
+  }
+
+  .bolded {
+    margin-left: 150%;
+  }
+
+  .bolded a{
+    font-size: 12px;
+  }
+
+  .heading {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .heading-reset {
+    font-size: 14px;
+    width: 80%;
+  }
+  
+}
+
+@media screen and (max-width: 376px){
+  .heading {
+    font-size: 18px;
+  }
+
+  .login-form input{
+    width: 230% !important;
+  }
+
+  .bolded {
+    margin-left: 130%;
+  }  
+
+  .heading {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .heading-reset > p {
+    font-size: 13px;
+    white-space: wrap;
+  }
+}
+
+@media screen and (max-width: 321px){
+  .heading {
+    font-size: 17px;
+    white-space: nowrap;
+  }
+
+  .login-form input{
+    width: 210% !important;
+  }
+
+  .bolded {
+    margin-left: 110%;
+  }  
+
+  .heading-reset {
+    font-size: 10px;
+    white-space: wrap;
+  }
+}

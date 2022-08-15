@@ -1,0 +1,179 @@
+{% extends 'user/layout2.html' %}
+
+{% block paymenttitle %}
+<link rel="stylesheet" type="text/css" href="/static/mycss/userdashboard.css">
+<title>Ease of Hair: Settings</title>
+{% endblock paymenttitle %}	
+
+{% block paymentcontent %}
+
+            <header class="menu-banner p-4">
+
+				<div class="row"> <!--logo row-->
+					<div class="col-12 d-flex justify-content-between">
+						<p><a href="/"><img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/></a></p>
+
+						<div class="d-flex justify-content-between">
+							<p class="mx-3">
+								<a href="">
+									<i class="fa fa-user" aria-hidden="true"></i>
+									{% if 'salon' in salondeets.salon_name.lower() %}
+										<span>Welcome, {{salondeets.salon_name|capitalize}}</span>
+									{% else %}
+										<span>Welcome, {{salondeets.salon_name|capitalize}} Salon!</span>
+									{% endif %}
+								</a> 
+							</p>
+
+						</div>
+
+					</div>
+				</div> <!--end of logo row-->
+			</header>
+
+			<section>
+				<form action="/salon/update/{{salondeets.salon_id}}" method="post" enctype="multipart/form-data">
+				<div class="row">
+
+					<div>
+						<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+					</div>
+
+					<div class="col-md-3 px-4 pt-2 nav-side user-nav">
+						<div class="nav-item bars pt-4">
+							<p class="invisible home"><a class="ms-3" aria-current="page" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></p>
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</div>
+
+						<div class="main-nav">
+							<p class="nav-item">
+								<i class="fa fa-user" aria-hidden="true"></i> <a class="ms-3" href="/salon/dashboard">Profile</a>
+							</p>
+
+							<p class="nav-item">
+								<i class="fa-solid fa-users"></i> <a class="ms-3" href="/salon/services">Services</a>
+							</p>
+
+							<p class="nav-item">
+								<i class="fa-solid fa-book-open"></i><a class="ms-3" href="/salon/bookings/{{salondeets.salon_id}}">Bookings</a>
+							</p>
+					
+							<p class="nav-item">
+								<i class="fa-solid fa-gear"></i> <a class="ms-3" href="/salon/settings">Settings</a>
+							</p>
+
+							<p class="nav-item">
+								<i class="fa-solid fa-power-off"></i> <a class="ms-3" href="/salon/logout">Log Out</a>
+							</p>
+						</div>
+					</div>
+
+
+					<div class="col-md-3 text-center my-md-5 px-5">
+						{% if salondeets.salon_image == None %}
+							<h4>Upload Profile Image</h4>
+							<hr>
+							
+								<h6>This will be your salon's banner, that users will see</h6>
+								<img src="/static/images/user.png" alt="" class="img-fluid" width="300">
+							{% else %}
+							<h4>Change Profile Image</h4>
+							<hr>
+							<h6>This will be your salon's banner, that users will see</h6>
+								<img src="/static/salon_images/{{salondeets.salon_image}}" alt="Salon Banner Image" class="img-fluid" width="300">
+							{% endif %}
+							
+							<div class="form-group">
+								<label for="salon-img" class="form-label"></label>
+								<input type="file" name="salonimg" class="form-control mb-3" id="salon-img" style="height: 2.4em;">
+							</div>
+							
+							{% if 'salon'.lower() in salondeets.salon_name %}
+								<h5 class="mt-4">{{salondeets.salon_name|upper}}</h5>
+							{% else %}
+								<h5>{{salondeets.salon_name|upper}} SALON</h5>
+							{% endif %}
+							<p>{{salondeets.salon_email}}</p>
+					</div>
+	
+
+					<div class="col-md-5 offset-md-1 my-5 px-sm-5 settings">
+						<!--Settings-->
+						<div>
+							<h4>Profile Settings</h4>
+
+							<div>
+								
+                                    <div class="row my-5 mt-0">
+                                        <div class="col-md-6  my-4">
+                                            <label for="fname" class="form-label">Owner's First Name</label>
+                                            <input type="text" name="sfname" id="fname" placeholder="First Name" class="form-control" value="{{salondeets.salon_ownerfname|capitalize}}">
+                                        </div>
+            
+                                        <div class="col-md-6  my-4">
+                                            <label for="lname" class="form-label">Owner's Last Name</label>
+                                            <input type="text" name="slname" id="lname" placeholder="Last Name" class="form-control" value="{{salondeets.salon_ownerlname|capitalize}}">
+                                        </div>
+                                    
+                                        <div class="col-12">
+                                            <label for="salon-name" class="form-label">Salon Name</label>
+                                            <input type="text" name="salonname" id="salon-name" placeholder="Salon Name" class="form-control" value="{{salondeets.salon_name|capitalize}}">
+                                        </div>
+            
+                                    </div>
+            
+                           
+							</div>
+							<hr>
+
+								<div class="row my-5">	
+									<h4 class="my-4">Contact Information</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label for="address" class="form-label">Address</label>
+                                            <input type="address" name="address" id="address" placeholder="Address" class="form-control" value="{{salondeets.salon_address|capitalize}}">
+                                        </div>
+        
+                                        <div class="col-md-6 mb-4">
+                                            <label for="salonphn" class="form-label">Phone Number</label>
+                                            <input type="text" name="salonphn" id="salonphn" placeholder="Phone Number" class="form-control" value="{{salondeets.salon_phone|capitalize}}">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" name="semail" id="email" placeholder="Email" class="form-control" value="{{salondeets.salon_email}}">
+                                        </div>
+                                    </div>
+								
+                            	</div>
+							<hr>
+
+							<div class="mt-5">
+								<h5 class="mb-3">Preferences</h5>
+								<h6>Please select all the services you wish to offer:</h6>
+
+								<div>
+									{% for i in service_type: %}
+										<div class="form-check">
+											<input type="checkbox" name="preference" id="servicetype" class="form-check-input mt-4" value="{{i.servtype_id}}">
+											<label for="servicetype"  class="serv-label ms-4 form-check-label">{{i.servtype_name}}</label><br>
+										</div>
+									{% endfor %}		
+								</div>
+							</div>
+
+							<button type="submit" class="btn btn-dark mt-5" style="width:100%">Save</button>
+							<hr class="mt-4">
+						</div> {# <!--end of Settings--> #}
+					
+					</div>
+
+			
+				
+				</div>
+			</form>	
+			</section>
+
+
+
+			{% endblock paymentcontent %}

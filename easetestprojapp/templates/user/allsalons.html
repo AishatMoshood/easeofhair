@@ -1,0 +1,72 @@
+{% extends 'user/layout.html' %}
+{% block css %}
+    
+    <title>Ease of Hair: All Salons</title>
+    <link rel="stylesheet"  type="text/css" href="/static/mycss/starter.css">
+{% endblock css %}
+
+{% block userpagecontent %}
+    
+			<section class="salons-sec text-center">
+				<div class="row">
+					{% for category, message in get_flashed_messages(with_categories=True) %}
+						<div class="alert alert-danger">Error: {{ message }}</div>
+					{% endfor %}
+
+					<div class="col-12 mt-5 all-salons">
+						<h1 style="font-size: 60px;">All Salons</h1>
+					</div>
+
+					<div class="col-md-12">
+						<div class="row p-5">
+							{% for i in all_salons %}
+							<div class="col-lg-3 col-md-6 mb-5">
+								
+									<div class="card">
+											{% if i.salon_image == None %}
+											<img src="/static/images/sm1.jpg" class="card-img-top salon-img" alt="Default salon banner image">
+											{% else %}
+												<img src="/static/salon_images/{{i.salon_image}}" class="card-img-top salon-img" alt="Salon banner image">
+											{% endif %}
+										
+
+										<div class="card-body">
+
+										{% if 'salon' in i.salon_name.lower(): %}
+											<h5 class="card-title">{{i.salon_name|capitalize}}</h5>
+										{% else %}
+											<h5 class="card-title">{{i.salon_name|capitalize}} Salon</h5>
+										{% endif %}
+
+										<p><i class="fa fa-map-marker" aria-hidden="true"></i> {{i.salon_address}} </p>
+										
+										<hr>
+										<p class="" style="font-weight: 600;"> Some of their services: 
+											{% for j in i.salonobj_serv[:4] %}<li>{{j.servtypeserv.servtype_name}}</li>{% endfor %}
+										</p>
+
+										<hr>
+										<p><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></p>
+										<div class="card-line"></div>
+										<a href="/book/salon/{{i.salon_id}}" class="btn btn-danger">Book Now</a>
+										</div>
+									</div>
+								
+							</div>
+							{% endfor %}
+
+						</div>	
+
+					</div><!--2nd col-12 end-->
+				</div>
+			</section>
+
+           
+{% endblock userpagecontent %}
+	
+
+		{% block js %}
+			<script src="/static/myjs/pay.js" type="text/javascript" language="javascript"></script>
+        {% endblock js %}
+		
+	

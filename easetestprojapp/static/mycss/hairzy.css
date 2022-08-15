@@ -1,0 +1,916 @@
+:root {
+  --red-main: #d90429;
+  --bg: #edf2f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: poppins, arial, "sans-serif";
+  overflow-x: hidden;
+  color: #fff;
+}
+
+.menu-banner {
+  min-height: 600px;
+  
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-inner {
+  width: 100%;
+  min-height: 600px !important;
+}
+
+.carousel-item img {
+  width: 100%;
+  min-height: 600px !important;
+}
+
+.carousel-item {
+  transition: transform 20s ease-out, opacity 0.3 ease;
+}
+
+.navbar {
+  position: absolute;
+  top: 10px;
+  z-index: 10;
+  background-color: transparent;
+  width: 100%;
+  z-index: 100;
+}
+
+.logo {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.navbar .container-fluid {
+  width: 95%;
+  margin: auto;
+}
+
+.navbar-collapse a {
+  color: #fff;
+  margin-right: 1em;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: 'PT Serif', serif;
+  font-style: oblique;
+  
+}
+
+.navbar-collapse a:hover {
+  color: var(--red-main);
+  font-size: 18px;
+  color: #fff;
+  border: 3px solid #fff;
+  animation: pulse 1s;
+  animation-timing-function: ease-in;
+}
+
+@keyframes pulse {
+  0% {
+    font-size: 18px;
+  }
+  25% {
+    font-size: 20px;
+  }
+  50% {
+    font-size: 22px;
+  }
+  100% {
+    font-size: 16px;
+  }
+}
+
+.navbar-collapse .dropdown a:active{
+  color: #fff;
+}
+
+.navbar-collapse .dropdown a:focus{
+  color: #fff;
+}
+
+.navbar-collapse .dropdown a:hover{
+  color: #fff;
+}
+
+.navbar-collapse .dropdown a:visited{
+  color: #fff;
+}
+
+.navbar-collapse .dropdown-menu a{
+  border-radius: 0;
+}
+
+.navbar-collapse .dropdown-menu a{
+  color: #000;
+  font-size: 16px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.navbar-collapse a:active, .navbar-collapse a:focus, .navbar-collapse a:hover, .navbar-collapse a:visited {
+  color: #fff;
+}
+
+.dropdown-menu {
+  border-radius: 10;
+  z-index: 2;
+}
+
+.dropdown-menu li a{
+  color: #000;
+  font-size: 10px;
+  padding: 10px 10px;
+  margin-left: 20px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.slogan {
+  z-index: 1;
+  color: #fff;
+  position: absolute;
+  bottom: 5%;
+}
+
+.slogan h1 {
+  font-family: "Dancing Script", cursive, poppins, sans-serif;
+  font-size: 80px;
+  font-weight: 800;
+  color: rgb(218, 16, 16);
+}
+
+.slogan h1 span {
+color: #fff;
+}
+
+.slogan h2 {
+  font-size: 48px;
+  text-transform: uppercase;
+}
+
+.slogan a {
+  padding: 10px 70px;
+  font-size: 25px;
+  font-weight: 600;
+  background-color: rgb(161, 12, 12);
+  color: #fff;
+}
+
+.slogan .row {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  width: 90%;
+  margin: auto;
+}
+
+.slogan input,
+.slogan select,
+.slogan button {
+  height: 60px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.slogan button,
+.slogan select {
+  cursor: pointer;
+}
+
+.slogan select {
+  border-radius: 0;
+}
+
+.slogan button {
+  background-color: rgb(10, 10, 10);
+}
+
+.search-form {
+  z-index: -999;
+}
+
+
+.salon {
+  border-bottom: thin solid #d6d6d6;
+}
+
+.salon .serv-box {
+  background-color: transparent;
+  color: #000;
+  border: thin solid #d6d6d6;
+  border-right: none;
+}
+
+.serv-box li {
+  text-decoration: none;
+  color: #960c0e;
+  font-size: 20px;
+  line-height: 2.1em;
+}
+
+.serv-box a:hover {
+  background-color: #960c0e;
+  color: #fff;
+  padding: 5px 10px;
+}
+
+.shape1,
+.shape2 {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid white;
+  padding-right: -3em;
+}
+
+.salon .services {
+  min-height: 500px;
+  color: #000;
+  margin-top: -3em;
+}
+
+.salon h1 {
+  font-family: "Dancing Script", cursive, poppins, sans-serif;
+  font-size: 70px;
+  font-weight: 800;
+}
+
+.small-col1,
+.small-col2,
+.small-col3,
+.small-col4,
+.small-col5,
+.small-col6 {
+  position: relative;
+}
+
+.small-p1,
+.small-p2,
+.small-p3,
+.small-p4,
+.small-p5,
+.small-p6 {
+  font-weight: 800;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+  display: none;
+}
+
+.small-p a {
+  color: #960c0e;
+  font-family: "PT Serif", serif;
+}
+
+.salons-sec {
+  color: #000;
+}
+
+.salons-sec h1 {
+  font-family: "Dancing Script", cursive, poppins, sans-serif;
+  font-size: 70px;
+  font-weight: 800;
+}
+
+.salons-sec .card {
+  margin-bottom: 30px;
+  border-radius: 0;
+  text-align: left;
+  height: 730px;
+  max-height: 760px;
+}
+
+.salons-sec .card-body {
+  color: #444;
+}
+
+.salons-sec img {
+  border-radius: 0;
+}
+
+.salon-img {
+  height: 300px;
+  max-height: 300px;
+}
+
+.salons-sec h5 {
+  color: #000;
+  font-size: 23px;
+  font-weight: 700;
+  font-family: "Satisfy", cursive, sans-serif;
+  margin-bottom: 20px;
+}
+
+.salons-sec .fa-map-marker {
+  font-size: 20px;
+  color: #806443;
+  margin-right: 10px;
+}
+
+.salons-sec .fa-star {
+  color: #806443;
+}
+
+.card-line {
+  width: 100%;
+  height: 1px;
+  background-color: #969696;
+  margin: 30px 0 20px;
+}
+
+.salons-sec a {
+  background-color: rgb(170, 14, 14);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 1px;
+}
+
+.slogan a:hover,
+.salons-sec a:hover {
+  transform: scale(0.96);
+  color: #fff;
+  background-color: #680607;
+}
+
+.trust {
+  color: #000;
+  border-top: thin solid #bbbbbd;
+  border-bottom: thin solid #bbbbbd;
+}
+
+.trust p:nth-of-type(1) {
+  text-align: center;
+  font-size: 4em;
+  color: #181717;
+}
+
+.trust h5 {
+  color: #582f0e;
+  font-family: "Satisfy", "cursive";
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.trust p:nth-of-type(2) {
+  line-height: 2em;
+}
+
+.hair-vid video {
+  position: relative;
+}
+
+.vid-overlay {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  background-color: #4d0708;
+  font-size: 5px;
+}
+
+.recent {
+  color: #000;
+}
+
+.recent h1 {
+  text-align: center;
+  font-family: "Dancing Script", cursive, poppins, sans-serif;
+  font-size: 65px;
+  font-weight: 800;
+}
+
+.recent h5 {
+  font-family: "Satisfy", cursive, sans-serif;
+  font-weight: 600;
+}
+
+.recent p:nth-of-type(2) {
+  border-top: thin dashed #d6d6d6;
+}
+
+.recent i {
+  color: #806443;
+}
+
+.recent .col-6 {
+  padding-top: 10px;
+  border-top: thin dashed #d6d6d6;
+  border-bottom: thin dashed #d6d6d6;
+}
+
+.recent .col-6:nth-of-type(1) {
+  border-right: thin solid #d6d6d6;
+}
+
+.recent a {
+  background-color: rgb(170, 14, 14);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.recent a:hover {
+  transform: scale(0.96);
+  color: #fff;
+  background-color: #960c0e;
+}
+
+.reviews {
+  min-height: 400px;
+  background-image: url(../images/salon.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.reviews > .row {
+  min-height: 400px;
+  background-color: rgba(102, 7, 8, 0.4);
+}
+
+.reviews .row:nth-of-type(2) {
+  color: #000;
+}
+
+.reviews .col-md-5 {
+  background-color: #fff;
+  height: 250px;
+}
+
+footer {
+  background-color: #0b090a;
+  border: 3px solid rgb(102, 7, 8);
+  padding: 40px 0;
+  color: #ddd;
+}
+
+footer h5 {
+  color: #fff;
+}
+
+.fth5 {
+  margin-left: 30px;
+}
+
+footer ul li {
+  list-style-type: none;
+  text-align: left;
+}
+
+footer a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+footer .socials a {
+  color: var(--red-main);
+  font-size: 23px;
+  margin-right: 10px;
+}
+
+footer .socials a:hover {
+  color: #ac0c0f;
+  font-size: 25px;
+  animation: bounce 3s ease-in;
+}
+
+footer a,
+footer p,
+footer p a {
+  font-size: 13px;
+}
+
+footer p,
+footer p a {
+  border-bottom: 1px solid #660708;
+  padding-bottom: 5px;
+}
+
+footer p a:hover {
+  color: var(--red-main);
+}
+
+.explore li:hover {
+  margin-left: 20px;
+}
+
+.explore a:hover {
+  color: #fff;
+  margin-left: 20px;
+}
+
+.location p {
+  border-bottom: thin solid #2c343a;
+}
+
+.location span {
+  font-size: 16px;
+  color: var(--red-main);
+  margin-right: 20px;
+}
+
+.sub h5,
+.fth5l {
+  margin-left: -0.1em;
+}
+
+.sub p {
+  border: none;
+}
+
+.sub input {
+  background-color: transparent;
+  border: thin solid #a29098;
+  border-radius: 0;
+  font-size: 13px;
+  color: #ddd;
+}
+
+.sub input:focus {
+  background-color: transparent;
+  border: 1px solid #fff;
+  box-shadow: 1px 1px 20px #2c343a;
+}
+
+.sub button {
+  border-radius: 0;
+}
+
+.sub button:hover {
+  color: white;
+  background-color: transparent;
+  border: 1px solid var(--red-main);
+}
+ 
+
+@media screen and (max-width: 1440px) {
+  .navbar {
+    
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .slogan {
+    z-index: 9;
+    color: #fff;
+    position: absolute;
+    top: 20%;
+  }
+
+  .slogan h1 {
+    font-size: 60px;
+  }
+
+  .slogan h2 {
+    font-size: 30px;
+  }
+
+  .salon h1{
+    border-bottom: 3px solid #4d0708;
+  }
+
+ 
+}
+
+
+@media screen and (max-width: 990px) { 
+  
+  .navbar-collapse a {
+    background-color: rgba(0,0,0,0.5);
+    margin-right: 2em;
+    font-size: 14px;
+    font-weight: 800;
+    font-style: oblique;
+    border-bottom: 1px solid var(--red-main);
+    margin-left: 10px;
+  }
+
+  .slogan {
+    z-index: 9;
+    color: #fff;
+    position: absolute;
+    top: 30%;
+  }
+
+  .slogan h1 {
+    font-size: 70px;
+  }
+
+  .slogan h2 {
+    font-size: 40px;
+  }
+
+  .slogan a {
+    padding: 10px 70px;
+    font-size: 25px;
+  }
+
+  .slogan .row {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    width: 85%;
+    margin: auto;
+  }
+
+  .slogan input,
+  .slogan select,
+  .slogan button {
+    height: 60px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .salon h1{
+    margin-top: 2em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    position: absolute;
+    top: 10px;
+    z-index: 10;
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .navbar .container-fluid {
+    border: 0;
+    width: 100%;
+    margin: auto;
+  }
+
+  .navbar-collapse a {
+    background-color: rgba(0,0,0,0.5);
+    margin-right: 2em;
+    font-size: 14px;
+    font-weight: 800;
+    font-style: oblique;
+    border-bottom: 1px solid var(--red-main);
+    margin-left: 10px;
+  }
+
+  .navbar-collapse a:hover {
+    color: var(--red-main);
+    font-size: 17px;
+    color: #fff;
+    border: 2px solid #fff;
+    animation: pulse 1s;
+    animation-timing-function: ease-in;
+  }
+
+
+  .slogan {
+    z-index: 9;
+    color: #fff;
+    position: absolute;
+    top: 20%;
+  }
+
+  .slogan h1 {
+    font-size: 60px;
+  }
+
+  .slogan h2 {
+    font-size: 30px;
+  }
+
+  .salon h1{
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: thin solid #d3d3d3;
+    border-bottom: 3px solid #4d0708;
+  }
+
+  footer h5 {
+    font-size: 18px;
+  }
+
+  footer>div {
+    padding: 0 30px;
+  }
+ 
+.socials, .contact-us, .location, .explore, .sub {
+    margin: 20px 0;
+  }
+
+  .socials {
+    margin-bottom: 30px;
+  }
+
+  .explore {
+    margin-left: -30px;
+    margin-bottom: -5px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  
+  .carousel-item img {
+    min-height: 320px !important;
+    margin-bottom: 40px;
+  }
+
+  .nav-link {
+    font-size: 10px;
+  }
+
+  .srhbtn {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .slogan {
+    top: 15%;
+  }
+ 
+  .slogan a {
+    padding: 10px 30px;
+    font-size: 17px;
+  }
+
+  .slogan .row {
+    width: 90%;
+    margin: auto;
+  }
+
+  .slogan h1 {
+    font-size: 35px;
+  }
+
+  .slogan h2 {
+    font-size: 20px;
+  }
+
+  .slogan .row {
+    width: 95%;
+    margin: auto;
+  }
+
+  .search-form {
+    z-index: -999;
+  }
+
+  /* .salon h1 {
+    margin-top: 300px !important; 
+  } */
+
+  .serv-box, .serv-box .col-lg-2 {
+    margin-bottom: 30px;
+  }
+
+  .salons-sec h1,.salon h1, .recent h1{
+    font-size: 50px;
+  }
+
+  .salon h1{
+    margin-top: -20px;
+  }
+
+
+  .trust .col-md-6 {
+    margin-top: 30px;
+  }
+
+  .recent {
+    margin-bottom: -10vh;
+  }
+
+  .recent h1 {
+    font-size: 38px;
+    font-weight: 800;
+  }
+
+  .reviews {
+    min-height: 500px;
+  }
+  
+  .reviews > .row {
+    min-height: 500px;
+    background-color: rgba(102, 7, 8, 0.4);
+  }
+
+  footer>div {
+    padding: 0 30px;
+  }
+ 
+.socials, .contact-us, .location, .explore, .sub {
+    margin: 20px 0;
+  }
+
+  .socials {
+    margin-bottom: 30px;
+  }
+
+  .explore {
+    margin-left: -30px;
+    margin-bottom: -5px;
+  }
+   
+}
+
+@media screen and (max-width: 375px) {
+  .slogan h1 {
+    font-size: 30px;
+    font-weight: 800;
+  }
+  .slogan h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: -10px;
+  }
+
+  .slogan a {
+    margin-top: -15px;
+    padding: 5px 30px;
+  }
+
+  .slogan .row {
+    width: 95%;
+    margin: auto;
+  }
+
+  
+  .salon h1{
+    margin-top: -130px;
+   
+  }
+
+  .recent h1 {
+    font-size: 33px;
+    font-weight: 800;
+  }
+
+  .reviews {
+    min-height: 580px;
+  }
+
+  .reviews > .row {
+    min-height: 580px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .slogan h1 {
+    font-size: 25px;
+  }
+
+  .slogan h2 {
+    font-size: 15px;
+  }
+
+  .slogan .row {
+    width: 98%;
+  } 
+
+  .salon h1{
+    margin-top: -15vh;
+    font-size: 37px;
+    padding-bottom: -50px;
+   
+  }
+
+  .salons-sec h1 {
+    font-size: 37px;
+  }
+
+  .recent h1 {
+    font-size: 35px;
+  }
+
+  .reviews {
+    min-height: 630px;
+  }
+
+  .reviews > .row {
+    min-height: 630px;
+  }
+}

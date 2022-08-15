@@ -1,0 +1,29 @@
+{% extends 'user/layout.html' %}
+        
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="/static/mycss/starter.css">
+{% endblock css %}
+
+
+{% block userpagecontent %}
+	<div id="cont" style="font-size: 30px;">
+		<span class="text-light bg-dark p-3 text-lg mt-5">Check your mail</span>
+	</div>
+
+	{% with m = get_flashed_messages() %}
+	{% if m %}
+		{% for i in m %}
+			<p class="alert">{{ i }}</p>
+		{% endfor %}
+	{% endif %}
+	{% endwith %}
+{% endblock userpagecontent %}
+
+{% block js %}
+<script src="/static/myjs/pay.js" type="text/javascript" language="javascript"></script>
+{% endblock js %}
+</body>
+</html>
+
+
+

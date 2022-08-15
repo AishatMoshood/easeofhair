@@ -1,0 +1,158 @@
+:root {
+  --red-main: #d90429;
+  --bg: #edf2f4;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: poppins, arial, "sans-serif";
+  overflow-x: hidden;
+  background-image: url(../images/signup2.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #eee;
+}
+
+.main-div {
+  min-height:700px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.logo {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.aside1 {
+  min-height: 700px;
+  color: #1f1f1f;
+}
+
+.aside1 h1:nth-of-type(1) {
+  margin-top: 70px;
+  font-size: 70px;
+  font-weight: 800;
+  text-align: center;
+  font-family: 'PT Serif', serif;
+}
+
+.aside1 p:nth-of-type(2) {
+  text-align: center;
+  font-weight: 600;
+  margin: 70px 0;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.aside1 h1:nth-of-type(2) {
+  font-size: 38px;
+  font-weight: 700;
+  text-align: center;
+  color: #530612;
+  font-family: 'Satisfy', cursive, 'sans-serif';
+}
+
+.aside2 {
+  background-color: #1f1f1f;
+  z-index: 1;
+}
+
+.aside2 a {
+  color: #ddd;
+}
+
+input {
+  margin-bottom: 20px;
+  border-radius: 0 !important;
+}
+
+input::placeholder {
+  font-size: 11px;
+}
+
+button {
+  width: 100%;
+}
+
+button:nth-of-type(1) {
+  background-color: #5c0513;
+  color: #fff;
+}
+
+button:nth-of-type(1):hover {
+  color: #fff;
+  background-color: #4e0511;
+}
+
+.signin-btn {
+  width: 100%;
+  background-color: #fff;
+  color: #1f1f1f !important;
+}
+
+.signin-btn:hover {
+  background-color: rgb(223, 222, 222);
+}
+
+
+.flash {
+  font-size: 12px;
+}
+
+@media screen and (max-width:1024px) {
+ 
+  .aside2 label:nth-of-type(1), .aside2 label:nth-of-type(2) {
+    font-size: 15px;
+    margin-left: 20px;
+    white-space: nowrap;
+  }
+
+  .aside2 .input-1,.aside2 .input-2 {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  .cust-form h6 {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}
+
+
+@media screen and (max-width:768px) {
+  .aside1 h1:nth-of-type(1) {
+    font-size: 42px;
+  }
+  
+  .aside1 p:nth-of-type(2) {
+    font-size: 16px;
+  }
+  
+  .aside1 h1:nth-of-type(2) {
+    font-size: 30px;  
+  }
+  
+}
+
+@media screen and (max-width:426px) {
+  .aside1 {
+    display: none;
+  }
+  
+  .aside2 label:nth-of-type(1), .aside2 label:nth-of-type(2) {
+    font-size: 16px;
+  }
+
+  .aside2 .input-1,.aside2 .input-2 {
+    margin-top: 10px;
+    display: block;
+  }
+
+  .cust-form h6 {
+    font-size: 16px;
+  }
+}

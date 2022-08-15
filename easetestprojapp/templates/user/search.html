@@ -1,0 +1,122 @@
+{% extends 'user/layout.html' %}
+{% block css %}
+    
+    <title>Ease of Hair: Search</title>
+    <link rel="stylesheet" href="/static/mycss/starter.css">
+{% endblock css %}
+
+{% block userpagecontent %}
+    
+	<section class="salons-sec text-center">
+		<div class="row">
+			{% if loc_res %}
+			
+			<div class="col-12 mt-5">
+				<h1 style="font-size: 60px;">All Results:</h1>
+			</div>
+
+			<div class="col-12">
+				<div class="row p-5">
+
+					{% for i in loc_res %}
+					<div class="col-lg-4 col-md-6 mb-5">
+						<div class="card">
+							{% if i.salon_image == None %}
+								<img src="/static/images/sm3.jpg" class="card-img-top salon-img" alt="Salon default Image">
+							{% else %}
+								<img src="/static/salon_images/{{i.salon_image}}" class="card-img-top salon-img" alt="Salon banner Image">
+							{% endif %}
+							
+							<div class="card-body">
+							{% if 'salon'.lower() in i.salon_name: %}
+								<h5 class="card-title">{{i.salon_name|capitalize}}</h5>
+							{% else %}
+								<h5 class="card-title">{{i.salon_name|capitalize}} Salon</h5>
+							{% endif %}
+
+							<p><i class="fa fa-map-marker" aria-hidden="true"></i> {{i.salon_address}}</p>
+						
+							<hr>
+							
+							<h1>Some of their services:</h1>
+							<hr>
+							<hr>
+								<ul>
+									{% for j in i.salonobj_serv[:5] %}
+										<li class="card-text d-inline-flex" style="font-weight: 600;">{{j.servtypeserv.servtype_name}},</li>
+									{% endfor %}
+								</ul>
+								<hr>
+							<hr>
+							<p><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></p>
+							<div class="card-line"></div>
+							<a href="/book/salon/{{i.salon_id}}" class="btn btn-danger">Book Now</a>
+							</div>
+						</div><!--card end-->
+					</div><!--cards col-lg-4 end-->
+					{% endfor %}
+
+				</div> <!--cards row end-->
+			</div><!--2nd col-12 end-->
+
+
+			{% elif serv_res %}
+				<div class="col-12 mt-5">
+					<h1 style="font-size: 60px;">All Results:</h1>
+				</div>
+
+				<div class="col-12">
+					<div class="row p-5">
+
+						{% for j in serv_res %}
+						<div class="col-lg-4 col-md-6 mb-5">
+							<div class="card">
+								{% if j.serv_salonobj.salon_image == None %}
+									<img src="/static/images/sm3.jpg" class="card-img-top salon-img" alt="Salon default Image">
+								{% else %}
+									<img src="/static/salon_images/{{j.serv_salonobj.salon_image}}" class="card-img-top salon-img" alt="Salon banner Image">
+								{% endif %}
+								
+								<div class="card-body">
+								{% if 'salon'.lower() in j.serv_salonobj.salon_name: %}
+									<h5 class="card-title">{{j.serv_salonobj.salon_name|capitalize}}</h5>
+								{% else %}
+									<h5 class="card-title">{{j.serv_salonobj.salon_name|capitalize}} Salon</h5>
+								{% endif %}
+
+								<p><i class="fa fa-map-marker" aria-hidden="true"></i> {{j.serv_salonobj.salon_address}}</p>
+							
+								<hr>
+								
+								<hr>
+								<p><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star star-addcolor" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></p>
+								<div class="card-line"></div>
+								<a href="/book/salon/{{j.serv_salonobj.salon_id}}" class="btn btn-danger">Book Now</a>
+								</div>
+							</div><!--card end-->
+						</div><!--cards col-lg-4 end-->
+						{% endfor %}
+
+					</div> <!--cards row end-->
+				</div><!--2nd col-12 end-->
+		
+
+			
+			{% else %}
+				<div class="col-12">
+					<h1 id="last-h1" >Sorry Nothing found</h1>
+				</div> 
+			{% endif %}
+
+		
+		</div><!--main row end-->
+	</section>
+           
+{% endblock userpagecontent %}
+	
+
+	{% block js %}
+		<script src="/static/myjs/pay.js" type="text/javascript" language="javascript"></script>
+	{% endblock js %}
+	
+	

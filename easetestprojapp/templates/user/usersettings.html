@@ -1,0 +1,134 @@
+{% extends 'user/layout2.html' %}
+
+{% block paymenttitle %}
+<link rel="stylesheet" type="text/css" href="/static/mycss/userdashboard.css">
+<title>Ease of Hair: Settings</title>
+{% endblock paymenttitle %}	
+
+{% block paymentcontent %}
+
+			
+                <header class="menu-banner p-4">
+
+                    <div class="row"> <!--logo row-->
+                        <div class="col-12 d-flex justify-content-between">
+                            <p><a href="/"><img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/></a></p>
+
+                            <div class="d-flex justify-content-between">
+                                <p class="me-5">
+                                    <a href="">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <span>Hi, {{custdeets.cust_fname|capitalize}}</span> 
+                                    </a> 
+                                </p>
+
+                                <p>
+                                    <a href="/all/salons">
+                                        <i class="fa-solid fa-book-open"></i>
+                                        <span>Book</span> 
+                                    </a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div> <!--end of logo row-->
+                </header>
+
+
+			<section>
+				<form action="/user/update/{{custdeets.cust_id}}" method="post" enctype="multipart/form-data">
+					<div>
+						<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+					</div>
+
+					<div class="row">
+						<div class="col-md-3 p-md-4 p-sm-4 nav-side user-nav">
+							
+							<div class="nav-item bars">
+								<p class="invisible home"><a class="ms-3" aria-current="page" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></p>
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+							
+							<div class="main-nav">
+
+								<p class="nav-item">
+									<i class="fa fa-user" aria-hidden="true"></i><a class="ms-3" aria-current="page" href="/userdashboard">Profile</a>
+								</p>
+
+								<p class="nav-item">
+									<i class="fa-solid fa-book-open"></i><a class=" ms-3" href="/user/bookings">Bookings</a>
+								</p>
+
+								<p class="nav-item">
+									<i class="fa-solid fa-money-bill-1"></i> <a class="ms-3" href="/user/dashboard/payment">Payments</a>
+								</p>
+		
+								<p class="nav-item">
+									<i class="fa-solid fa-gear"></i> <a class="ms-3" href="/user/settings">Settings</a>
+								</p>
+
+								<p class="nav-item">
+									<i class="fa-solid fa-power-off"></i> <a class="ms-3" href="{{url_for('logout')}}">Log Out</a>
+								</p>
+							</div>
+						</div>
+
+						<div class="col-md-3 mt-4 p-2 text-center">
+							<label for="img" class="">Upload Profile Picture</label>
+							<input type="file" name="img" id="img" class="form-control mb-4 w-75 d-flex justify-content-center m-auto" value="{{custdeets.cust_img}}" style="height: 2.4em;">
+							<h5 >{{custdeets.cust_fname|capitalize}} {{custdeets.cust_lname|capitalize}}</h5>
+							<p>{{custdeets.cust_email|lower}}</p>
+					
+						</div>
+
+						<div class="col-md-6 mt-4 settings">
+			
+							<!--Settings-->
+							<div class="">
+								<h3 class="mb-5" style="font-size: 50px;">Profile Settings</h3>
+		
+								<div>
+									<h4 class="mb-4">Your Information</h4>
+									<div class="row mb-5">
+										<div class="col-md-6">
+											<label for="fname">First Name</label><br>
+											<input type="text" name="fname" id="fname" class="form-control" value="{{custdeets.cust_fname|capitalize}}">
+										</div>
+		
+										<div class="col-md-6">
+											<label for="lname">Last Name</label><br>
+											<input type="text" name="lname" id="lname" class="form-control" value="{{custdeets.cust_lname|capitalize}}">
+										</div>
+		
+									</div>
+								</div>
+								<hr>
+		
+								<div  class="my-5">
+									<h4 class="my-4">Contact Information</h4>
+									<div class="my-4">
+										<label for="phone">Phone No</label><br>
+										<input type="text" name="phone" id="phone" class="form-control" value="{{custdeets.cust_phone|capitalize}}">
+									</div> 
+
+									<div >
+										<label for="email">Email</label><br>
+										<input type="email" name="email" id="email" class="form-control" value="{{custdeets.cust_email|lower}}">
+									</div>
+								</div>
+								<hr>
+
+								<button type="submit" class="btn btn-danger my-5" style="width:100%">Save</button>
+							
+							</div><!--end of Settings-->
+							
+						</div>
+					</form>	
+						
+					</div>
+				
+			</section>
+
+		
+
+			{% endblock paymentcontent %}

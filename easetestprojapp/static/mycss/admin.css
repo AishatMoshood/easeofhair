@@ -1,0 +1,116 @@
+:root {
+  --red-main: #d90429;
+  --bg: #edf2f4;
+  --bg-black: #131011;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.login-form {
+  margin-top: -7em;
+}
+
+.sec1 {
+  background-color: var(--bg-black);
+  color: #eee;
+}
+
+.sec1 input {
+  background-color: #f5f5f5;
+  border-radius: 30px;
+  padding: 5px 20px;
+  font-weight: 600;
+}
+
+.sec1 p {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.sec1 a {
+  color: #eee;
+  text-decoration: none;
+}
+
+.sec1 i {
+  margin-right: 10px;
+  color: #a70721;
+}
+
+.sec1 a:hover {
+  background-color: #f5f5f5;
+  color: #000;
+  padding: 5px 10px;
+  font-weight: 500;
+}
+
+.sub1 {
+  background-color: #f5f5f5;
+  margin-top: 20px;
+  border-radius: 30px;
+}
+
+.sub1 i {
+  color: #a70721;
+}
+
+.sub1 a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.card {
+  border-top: thin solid var(--red-main);
+  background-color: #131011;
+  color: #f5f5f5;
+  position: relative;
+}
+
+.card h5 {
+  font-size: 30px;
+}
+
+.card h4  {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: #660414;
+  padding: 5px 15px;
+  border-radius: 50%;
+}
+
+.card i {
+  font-size: 40px;
+  color: #660414;
+}
+
+.small-card {
+  margin-top: 20px;
+}
+
+.fa-solid {
+  color: #000;
+}
+
+.medium-card {
+  margin-top: 35px;
+}
+
+.login-form > .row{
+  margin-top: -50px;
+}
+

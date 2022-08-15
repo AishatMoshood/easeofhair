@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="desc" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="Aishat Moshood">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,700&family=Satisfy&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/static/faicons/css/all.min.css">
+
+        {% block css %}
+        {% endblock css %}
+
+        	
+	</head>
+
+	<body>
+		<div class="container-fluid px-0">
+
+
+			<header class="menu-banner" style="margin-bottom: 2px solid black !important;">
+				
+				<div class="row">
+					<div class="col-md-12">
+						<nav class="navbar navbar-expand-lg">
+							<div class="container-fluid">
+								
+								<a class="navbar-brand" href="/"><img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/></a>
+								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="navbar-toggler-icon">
+										<i class="fa-solid fa-bars text-dark mt-2 text-lg"></i>
+									</span>
+								</button>
+	
+								<div class="collapse navbar-collapse pb-3" id="navbarSupportedContent">
+									
+									<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+										<li class="nav-item">
+											<a class="nav-link active" aria-current="page" href="/">Home</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/about">About</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/all/salons">Salons</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/all/salons">Book</a>
+										</li>
+										
+										{% if session.get('loggedin') != None %}
+									
+											<li class="nav-item">
+												<a class="nav-link" href="{{url_for('userdash')}}">My Dashboard</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" href="{{url_for('logout')}}">Log Out</a>
+											</li>
+										{% elif session.get('salon_loggedin') != None %}
+		
+											<li class="nav-item">
+												<a class="nav-link" href="{{url_for('salon_dashboard')}}">My Dashboard</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" href="{{url_for('salon_logout')}}">Log Out</a>
+											</li>
+										{% else %}
+											<li class="nav-item">
+												<a class="nav-link" href="/signup">Sign Up</a>
+											</li>
+
+											<li class="nav-item dropdown">
+												<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+												  Login
+												</a>
+												<ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+													<li><hr class="dropdown-divider"></li>
+												  <li><a class="nav-link dropdown-menu-a" href="{{url_for('user_login')}}">Customer Login</a></li>
+												  <li><hr class="dropdown-divider"></li>
+												  <li style="z-index: 100;"><a class="nav-link dropdown-menu-a" href="{{url_for('salon_login')}}">Salon Login</a></li>
+												  <li><hr class="dropdown-divider"></li>
+												</ul>
+											  </li>
+										{% endif %}
+									</ul>
+	
+									<form class="d-flex">
+										<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+										<button class="btn btn-dark srhbtn" type="submit">Search</button>
+									</form>
+	
+	
+								</div>
+								
+							</div>
+						</nav>
+					</div>
+
+
+
+				
+				</div>	
+	
+			</header>
+
+            {% block userpagecontent %}
+				<p>Hello</p>
+            {% endblock userpagecontent %}
+
+            <footer class="px-3 py-5">
+				<div class="row ps-md-5">
+					<div class="col-md-3">
+
+						<div class="socials">
+							<h5>Connect With Us</h5>
+							<a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+							<a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+							<a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+							<a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+						</div>
+
+						<div class="text-left mt-3">
+							<h5 class="mt-4 mb-3">Contact Us</h5>
+							<p>Call: +2348056735644</p>
+							<p>Text: +2347063477466</p>
+							<p><a href="#" target="_blank">Email: customerservice@hairzy.com</a></p>
+						</div>
+
+					</div>
+
+					<div class="col-md-3 explore">
+						<h5 class="fth5">Explore</h5>
+						<ul>
+							<li><a href="/all/salons">Salons</a></li>
+							<li><a href="/all/salons">Services</a></li>
+							<li><a href="#">Lookbook</a></li>
+							<li><a href="#">FAQs</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-3 location">
+						<h5 class="fth5l">Locations and Hours</h5>
+						<p><span>Lagos</span> Mon-Sun 6am - 7pm</p>
+						<p><span>Abuja</span> Mon-Sun 6am - 7pm</p>
+						<p><span>Delta</span> Mon-Sun 6am - 7pm</p>
+						<p><span>Kwara</span> Mon-Sun 6am - 7pm</p>
+					</div>
+
+					<div class="col-md-3 sub pe-5">
+						<h5 class="fth5" >Subscribe and Save</h5>
+						<p>Save 10% the first time you patronize us, also join our newsletter to save a further 2%.</p>
+						<form>
+							<label  for="email" class="visually-hidden">Enter your email</label>
+							<input type="email" name="email" id="email" placeholder="Enter your email" class="form-control">
+							<button type="button" class="btn btn-light  mt-3">Submit</button>
+						</form>	
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		
+		<script src="/static/js/bootstrap.bundle.min.js" type="text/javascript" language="javascript"></script>
+		<script src="/static/jquery/jquerymin.js" type="text/javascript" language="javascript"></script>
+
+		{% block js %}
+        {% endblock js %}
+	</body>
+</html>
+
+
+
+			

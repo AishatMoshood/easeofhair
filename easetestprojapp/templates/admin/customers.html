@@ -1,0 +1,49 @@
+{% extends 'admin/admin_layout.html' %}
+{% block adminlayout %}
+        
+<main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+    <div class="sub1 px-3 py-2 pt-3 d-flex justify-content-between mb-5">
+        <div>
+            <h1>Overview</h1>
+        </div>
+
+        <div >
+            <a href="" class="me-3">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+            </a>
+
+            <a href="">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>Hi, {{admindeets.admin_username}}!</span> 
+            </a>
+
+        </div>
+    </div> 
+
+        <h1>All Users</h1>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User's Name</th>
+                    <th scope="col">User's Email</th>
+                    <th scope="col">User's Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if users %}
+                {% for s in users %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{s.cust_fname}} {{s.cust_lname}}</td>
+                    <td>{{s.cust_email}}</td>
+                    <td>{{s.cust_phone}}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+
+               
+            </tbody>
+    </table>
+</main>
+{% endblock %}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="desc" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="Aishat Moshood">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,700&family=Satisfy&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/static/faicons/css/all.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/mycss/signup.css">
+
+		<title>Ease of Hair: Sign Up</title>	
+	</head>
+
+	<body>
+		<div class="container-fluid px-0">
+
+				<div class="row main-div">
+					<div class="col-lg-7 col-md-6 aside1 p-4 pt-5">
+						<p class="text-left" style="margin-top: -30px"><a href="/"><img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/></a></p>
+						<h1>Find the nearest salon to you.</h1>
+						<h2 class="text-center my-5">Salon on the Go.</h2>
+						<h1>Braids. Cornrows. etc. At affordable prices</h1>
+					</div>
+
+					<div class="col-lg-5 col-md-6 aside2 p-5 pt-4">
+						<div class="col-md-12 d-md-none">
+							<p class="text-left mb-4" style="margin-top: -10px"><a href="/"><img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/></a></p>
+						</div>
+
+						<div class="col-md-6 input-1">
+							<input type="radio" id="customers" name="signup" value="customers" checked>
+							<label for="customers">Customers sign up here</label>
+						</div>
+	
+						<div class="col-md-6 input-2">
+							<input type="radio" id="salons" name="signup" value="salons">
+							<label for="salons">Salons join the team!</label>
+						</div>
+						
+						<div class="cust-form"><!--Customer reg-->
+							<h6 class="mb-4">Create an account for free and find out what everyone is talking about!</h6>
+
+							<form action="/signup/submit" method="POST">
+								{% with m = get_flashed_messages() %}
+									{% if m %}
+										{% for i in m %}
+											<small class="alert alert-danger text-sm flash my-5 p-0">{{ i }}</small>	
+										{% endfor %}
+									{% endif %}
+								{% endwith %}
+								<div>
+									<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<label for="fname" class="visually-hidden">First Name</label>
+										<input type="text" name="fname" id="fname" placeholder="First Name" class="form-control">
+									</div>
+		
+									<div class="col-md-6">
+										<label for="lname" class="visually-hidden">Last Name</label>
+										<input type="text" name="lname" id="lname" placeholder="Last Name" class="form-control">
+									</div>
+								</div>
+	
+								<div>
+									<label for="email" class="visually-hidden">Email</label>
+									<input type="email" name="email" id="email" placeholder="Email" class="form-control">
+								</div>
+	
+								<div>
+									<label for="pwd" class="visually-hidden">Password</label>
+									<input type="password" name="pwd" id="pwd" placeholder="Password must contain 1 lowercase, 1 uppercase and 1 special character, 1digit at least, 8 characters in length" class="form-control">
+								</div>
+	
+								<div>
+									<label for="confpwd" class="visually-hidden">Confirm Password</label>
+									<input type="password" name="confpwd" id="confpwd" placeholder="Confirm Password" class="form-control">
+								</div>
+	
+								<div>
+									<p>Gender</p>
+	
+									<input type="radio" name="gender" id="female" value="female" class="form-input">
+									<label for="female" class="form-label me-2">Female</label>
+	
+									<input type="radio" name="gender" id="male" value="male" class="form-input">
+									<label for="male" class="form-label">Male</label>
+								</div>
+								
+								<button type="submit" class="btn mb-3">REGISTER</button>
+
+								<a href="user/login" class="btn mb-3 signin-btn">SIGN IN</a>
+							</form>
+						</div><!--end of customer reg-->
+						
+						<div class="d-none salon-form"><!--salon reg-->
+							<p>Join the team and subscribe <a href="#">here</a>
+								to make the most of our services</p>
+
+							<form action="{{url_for('salon_signup_submit')}}" method="post">
+								<div class="row">
+									<div>
+										<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+									</div> 
+
+									<div class="col-md-6">
+										<label for="sfname" class="visually-hidden">Owner First Name</label>
+										<input type="text" name="sfname" id="sfname" placeholder="First Name" class="form-control">
+									</div>
+		
+									<div class="col-md-6">
+										<label for="slname" class="visually-hidden">Owner Last Name</label>
+										<input type="text" name="slname" id="slname" placeholder="Last Name" class="form-control">
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-md-6">
+										<label for="salon-name" class="visually-hidden">Salon Name</label>
+										<input type="text" name="salonname" id="salon-name" placeholder="Salon Name" class="form-control">
+									</div>
+		
+									<div class="col-md-6">
+										<label for="semail" class="visually-hidden">Email</label>
+										<input type="email" name="semail" id="semail" placeholder="Email" class="form-control">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<label for="spwd" class="visually-hidden">Password</label>
+										<input type="password" name="spwd" id="spwd" placeholder="Password must contain 1 lowercase, 1 uppercase and 1 special character" class="form-control">
+									</div>
+		
+									<div class="col-md-6">
+										<label for="sconfpwd" class="visually-hidden">Confirm Password</label>
+										<input type="password" name="sconfpwd" id="sconfpwd" placeholder="Confirm Password" class="form-control">
+									</div>
+								</div>
+								
+
+								<div>
+									<label for="address" class="visually-hidden">Address</label>
+									<input type="address" name="address" id="address" placeholder="Address" class="form-control">
+								</div>
+
+								<div>
+									<label for="salonphn" class="visually-hidden">Phone Number</label>
+									<input type="text" name="salonphn" id="salonphn" placeholder="Phone Number" class="form-control">
+								</div>
+	
+								<button type="submit" class="btn mb-3">REGISTER</button>
+
+								<a href="/salon/login" class="btn mb-3 signin-btn">SIGN IN</a>
+	
+							</form>
+						</div><!--end of salon reg-->
+					</div>
+
+					
+				</div>
+		</div>
+
+		<script src="/static/js/bootstrap.bundle.min.js" type="text/javascript" language="javascript"></script>
+		<script src="/static/jquery/jquerymin.js" type="text/javascript" language="javascript"></script>
+
+		<script type="text/javascript" language="javascript">
+			$(document).ready( function() {
+				$('#customers').click( function() {
+					$('.cust-form').show(700)
+					$('.salon-form').addClass('d-none')
+				})
+
+				$('#salons').click( function() {
+					$('.cust-form').hide(700)
+					$('.salon-form').removeClass('d-none')
+				})
+			})
+		</script>
+	</body>
+</html>
+

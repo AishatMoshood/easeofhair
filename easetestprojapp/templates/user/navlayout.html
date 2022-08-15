@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="desc" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="Aishat Moshood">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,700&family=Satisfy&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/static/faicons/css/all.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/mycss/hairzy.css">
+
+		{% block css %}
+        {% endblock css %}
+	</head>
+
+	<body>
+		<div class="container-fluid px-0">
+
+
+			{% block navpagecontent %}
+            {% endblock navpagecontent %}
+			<footer class="px-3 py-5">
+				<div class="row ps-md-5">
+					<div class="col-md-3">
+
+						<div class="socials">
+							<h5>Connect With Us</h5>
+							<a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+							<a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+							<a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+							<a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+						</div>
+
+						<div class="text-left mt-3 contact-us">
+							<h5 class="mt-4 mb-3">Contact Us</h5>
+							<p>Call: +2348056735644</p>
+							<p>Text: +2347063477466</p>
+							<p><a href="#" target="_blank">Email: customerservice@hairzy.com</a></p>
+						</div>
+
+					</div>
+
+					<div class="col-md-3 explore">
+						<h5 class="fth5">Explore</h5>
+						<ul>
+							<li><a href="/all/salons">Salons</a></li>
+							<li><a href="/all/salons">Services</a></li>
+							<li><a href="/">Lookbook</a></li>
+							<li><a href="/">FAQs</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-3 location">
+						<h5 class="fth5l">Locations and Hours</h5>
+						<p><span>Lagos</span> Mon-Sun 6am - 7pm</p>
+						<p><span>Abuja</span> Mon-Sun 6am - 7pm</p>
+						<p><span>Delta</span> Mon-Sun 6am - 7pm</p>
+						<p><span>Kwara</span> Mon-Sun 6am - 7pm</p>
+					</div>
+
+					<div class="col-md-3 sub pe-5">
+						<h5 class="fth5" >Subscribe and Save</h5>
+						<p>Save 10% the first time you patronize us, also join our newsletter to save a further 2%.</p>
+						<form>
+							<label  for="email" class="visually-hidden">Enter your email</label>
+							<input type="email" name="email" id="email" placeholder="Enter your email" class="form-control">
+							<button type="button" class="btn btn-light  mt-3">Submit</button>
+						</form>	
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		
+		<script src="/static/js/bootstrap.bundle.min.js" type="text/javascript" language="javascript"></script>
+		<script src="/static/jquery/jquerymin.js" type="text/javascript" language="javascript"></script>
+
+        {% block js %}
+		{% endblock js %}
+	</body>
+</html>
+

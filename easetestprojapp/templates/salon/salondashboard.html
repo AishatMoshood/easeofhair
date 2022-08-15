@@ -1,0 +1,157 @@
+{%extends 'salon/layout2.html'%}
+
+{% block paymenttitle %}
+<link rel="stylesheet" type="text/css" href="/static/mycss/userdashboard.css">
+<title>Ease of Hair: Dashboard</title>
+{% endblock paymenttitle %}	
+
+{% block paymentcontent %}
+
+            <header class="menu-banner p-4">
+
+				<div class="row"> <!--logo row-->
+					<div class="col-12 d-flex justify-content-between">
+						<p><a href="/"><img src="/static/logo/color_logo_with_bg.png" alt='Ease of Hair Logo' class="logo"/></a></p>
+
+						<p>{% with m = get_flashed_messages()  %}
+							{% if m %}
+								{% for i in m  %}
+									<p class="alert alert-success">{{ i }}</p>
+									{% endfor %}
+							{% endif %}	
+						{% endwith  %}</p>
+
+						<div class="d-flex justify-content-between">
+							<p class="me-4">
+								<a href="">
+									<i class="fa fa-user" aria-hidden="true"></i>
+									{% if "salon" in salondeets.salon_name.lower() %}
+										<span>Welcome, {{salondeets.salon_name|capitalize}}</span>
+									{% else %}
+										<span>Welcome, {{salondeets.salon_name|capitalize}} Salon!</span>
+									{% endif %}
+								</a> 
+							</p>
+
+						</div>
+
+					</div>
+				</div> <!--end of logo row-->
+			</header>
+
+			<section>
+				<div class="row">
+					<div class="col-12 dashboard-banner">
+						<div class="banner-overlay">
+							{% if salondeets.salon_image == None %}
+								<div class="text-center my-5 banner_img text-dark">
+									<h4 class="text-dark">Upload an image in your settings, this is what will be displayed here.</h4>
+									<h5 class="text-dark px-2">Potential customers will see this image when they go through your profile, It is recommended that you choose a befitting one.</h5>
+								</div>		
+							{% else %}
+								<img src="/static/salon_images/{{salondeets.salon_image}}" alt="Salon Banner Image" class="img-fluid banner_img" style="width: 100%; height: 400px;">
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="row">
+					<div class="col-md-3 px-4 pt-2 nav-side user-nav">
+						<div class="nav-item bars pt-4">
+							<p class="invisible home"><a class="ms-3" aria-current="page" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></p>
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</div>
+
+						<div class="main-nav">
+							<p>	
+								<i class="fa fa-user" aria-hidden="true"></i> <a class="ms-3" href="/salon/dashboard">Profile</a>
+							</p>
+
+							<p class="nav-item">
+								<i class="fa-solid fa-users"></i> <a class="ms-3" href="/salon/services">Services</a>
+							</p>
+
+							<p class="nav-item">
+								<i class="fa-solid fa-book-open"></i><a class="ms-3" href="/salon/bookings/{{salondeets.salon_id}}">Bookings</a>
+							</p>
+
+							<p class="nav-item">
+								<i class="fa-solid fa-gear"></i> <a class="ms-3" href="/salon/settings">Settings</a>
+							</p>
+
+							<p class="nav-item">
+								<i class="fa-solid fa-power-off"></i> <a class="ms-3" href="/salon/logout">Log Out</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-7 offset-md-1">
+		
+						<div class=""><!--Readonly profile-->
+							<div class="d-flex justify-content-between p-3">
+								<h3 class="my-account my-account1">My Account</h3>
+								<h4 class="set mt-1"><a href="/salon/settings">Settings</a></h4>
+							</div>
+	
+							<div class="my-5 px-5">
+								<h4 class="my-4">Your Information</h4>
+								<div class="row">
+									<div class="col-md-6">
+										<label>Owner's First Name</label><br>
+										<input type="text" class="form-control" placeholder="{{salondeets.salon_ownerfname|capitalize}}" readonly>
+									</div>
+	
+									<div class="col-md-6">
+										<label>Owner's Last Name</label><br>
+										<input type="text" class="form-control" placeholder="{{salondeets.salon_ownerlname|capitalize}}" readonly>
+									</div>
+	
+                                    <div class="col-md-6">
+										<label>Salon Name</label><br>
+
+										{% if 'salon'.lower() in salondeets.salon_name %}
+										<input type="text" class="form-control" placeholder="{{salondeets.salon_name|capitalize}}" readonly>
+									{% else %}
+										<input type="text" class="form-control" placeholder="{{salondeets.salon_name|capitalize}} Salon" readonly>
+									{% endif %}	
+									</div>
+
+								</div>
+							</div>
+							<hr>
+	
+							<div class="my-5 px-5">
+								<h4 class="text-center my-4">Contact Information</h4>
+                                <div >
+									<label>Address</label><br>
+									<input type="text" class="form-control" placeholder="{{salondeets.salon_address|capitalize}}" readonly>
+								</div>
+	
+								<div >
+									<label>Email</label><br>
+									<input type="text" class="form-control" placeholder="{{salondeets.salon_email}}" readonly>
+								</div>
+	
+								<div>
+									<label>Phone No</label><br>
+									<input type="text" class="form-control" placeholder="{{salondeets.salon_phone}}" readonly>
+								</div>
+							</div>
+							<hr>
+	
+
+						</div><!--end of Readonly profile-->
+					
+					</div>
+
+				</div>
+			</section>
+
+	{% endblock paymentcontent %}
+
+
+	{% block js %}
+		
+    {% endblock js %}

@@ -1,0 +1,25 @@
+        {% extends 'user/layout.html' %}
+        
+        {% block css %}
+            <link rel="stylesheet" type="text/css" href="/static/mycss/starter.css">
+        {% endblock css %}
+
+
+            {% block userpagecontent %}
+
+            <div  id="cont">
+                <h2>Your transaction receipt has been sent your mail</h2>
+                <a href="/userdashboard"  class="btn btn-lg btn-dark my-3">Go back to dashboard</a>
+            </div>
+
+            {% endblock userpagecontent %}
+
+		{% block js %}
+        <script src="/static/myjs/pay.js" type="text/javascript" language="javascript"></script>
+        {% endblock js %}
+	</body>
+</html>
+
+
+
+			

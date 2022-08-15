@@ -1,0 +1,84 @@
+{% extends 'user/layout.html' %}
+{% block css %}
+    
+    <title>Ease of Hair: Booking Summary</title>
+    <link rel="stylesheet" href="/static/mycss/starter.css">
+{% endblock css %}
+
+{% block userpagecontent %}
+                
+            
+    <form action="" method="post">
+        <div class="row my-5 px-5 salon-deets">
+            <div class="col-md-12">
+                <h1 class="mb-3 text-center text-dark">BOOKING SUMMARY</h1>
+                <p><span>Salon Name:</span> 
+                    {% if 'salon' in (bookdeets.salonbook.salon_name).upper() %}
+                        {{bookdeets.salonbook.salon_name|capitalize}}
+                    {% else %}
+                        {{bookdeets.salonbook.salon_name|capitalize}} Salon
+                    {% endif %}
+                </p>
+                <p><span>Address:</span>  {{bookdeets.salonbook.salon_address|capitalize}}</p>  
+                <p><span>Phone Number:</span>  {{bookdeets.salonbook.salon_phone}}</p> 
+                <p><span class="me-2">Date Booked:</span>{{bookdeets.book_date}}</p>  
+                <p><span class="me-2">Time Booked:</span>{{bookdeets.book_time}}</p>  
+            </div>
+
+            <div class="col-md-6 mt-4 mt-sm-5">
+                <h2  class="mb-3">Service Total:</h2>
+                <table class="table table-bordered table-striped mt-3 table-danger text-center">
+                    <thead>
+                        <tr >
+                            <th>#</th>
+                            <th scope="col">Service</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for p in bservdeets %}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                            <td>{{p.bservservice.servtypeserv.servtype_name}}</td>
+                            <td ><i class="fa-solid fa-naira-sign"></i> {{p.bservservice.servtypeserv.servtype_price|int}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+                
+                <p class="tot-prc" style="font-size: 30px;">
+                    Total:
+                
+                    {% set tot = [] %}
+                    {% for p in bservdeets %}
+                        {% set pEach = p.bservservice.servtypeserv.servtype_price%}
+                        {%set pTot = tot.append(pEach)%}
+                    {% endfor %}
+                    <i class="fa-solid fa-naira-sign"></i><input class="tot" name="tot" value="{{tot|sum|int}}" style="border:none;font-weight: 500;" readonly>
+                </p>                  
+            </div>
+
+            <div class="col-md-12">
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            </div>    
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-lg btn-danger offset-md-3 book-salon-submit">Proceed to Payment</button>
+            </div>
+        
+
+        </div> 
+    </form>
+           
+{% endblock userpagecontent %}
+	
+
+    {% block js %}
+        <script src="/static/myjs/pay.js" type="text/javascript" language="javascript"></script>
+
+    {% endblock js %}
+    
+	
