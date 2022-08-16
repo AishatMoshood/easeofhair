@@ -306,19 +306,18 @@ def salon_token_reset(token):
             return redirect(url_for('salon_login'))
 
         pwd = request.form.get('resetpwd')
+        pwdreg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$"
 
         if pwd != '':
-
-            salon = Salon.query.filter(Salon.salon_email==email).first()
-            
-            if salon:     
+            if re.match(pwdreg, pwd) == None:
+                flash("Please entered password should contain at least; one capital Letter, one special character, one digit and length should be at least 8.")
+            else:     
+                salon = Salon.query.filter(Salon.salon_email==email).first()
+                
                 salon.salon_pwd = generate_password_hash(pwd).decode('utf-8')
                 db.session.add(salon)
                 db.session.commit()
                 flash('Your password has been updated!', 'success')
-                return redirect(url_for('salon_login'))
-            else:
-                flash('Invalid email address!', 'error')
                 return redirect(url_for('salon_login'))
         else:
             flash('Please input a new password', 'error')

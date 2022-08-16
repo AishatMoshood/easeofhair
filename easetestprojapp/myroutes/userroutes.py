@@ -478,19 +478,17 @@ def token_reset(token):
             return redirect(url_for('user_login'))
 
         pwd = request.form.get('resetpwd')
+        pwdreg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$"
 
         if pwd != '':
-
-            user = Customer.query.filter(Customer.cust_email==email).first()
-            
-            if user:     
+            if re.match(pwdreg, pwd) == None:
+                flash("Please entered password should contain at least; one capital Letter, one special character, one digit and length should be at least 8.")
+            else:
+                user = Customer.query.filter(Customer.cust_email==email).first()
                 user.cust_pwd = generate_password_hash(pwd).decode('utf-8')
                 db.session.add(user)
                 db.session.commit()
                 flash('Your password has been updated!', 'success')
-                return redirect(url_for('user_login'))
-            else:
-                flash('Invalid email address!', 'error')
                 return redirect(url_for('user_login'))
         else:
             flash('Please input a new password', 'error')
