@@ -98,39 +98,32 @@ def userdash():
 @app.route('/user/login', methods=['POST', 'GET'])
 def user_login():
     loggedin = session.get('loggedin')
-    salon_loggedin = session.get('salon_loggedin')
 
-    custdeets = Customer.query.get(loggedin)
-
-    if (loggedin != None) or (salon_loggedin != None):
-        flash('Please log out of current account, to login to another one')
-        return redirect('/all/salons')
+    if request.method == 'GET':
+        return render_template('user/login.html')
     else:
-        if request.method == 'GET':
-            return render_template('user/login.html', custdeets=custdeets)
-        else:
-            username = request.form.get('username')
-            pwd = request.form.get('pwd')
-            if username != '' and pwd != '':
-                deets = Customer.query.filter(Customer.cust_email == username).first()
-                
-                if deets:
-                    chk = deets.cust_pwd
-                    formatted = check_password_hash(chk,pwd)
+        username = request.form.get('username')
+        pwd = request.form.get('pwd')
+        if username != '' and pwd != '':
+            deets = Customer.query.filter(Customer.cust_email == username).first()
+            
+            if deets:
+                chk = deets.cust_pwd
+                formatted = check_password_hash(chk,pwd)
 
-                    if formatted:
-                        id = deets.cust_id
-                        session['loggedin'] = id
-                        return redirect('/userdashboard')
-                    else:
-                        flash('Invalid Credentials')
-                        return redirect('/user/login')
+                if formatted:
+                    id = deets.cust_id
+                    session['loggedin'] = id
+                    return redirect('/userdashboard')
                 else:
-                    flash("Please reconfirm details")
+                    flash('Invalid Credentials')
                     return redirect('/user/login')
             else:
-                flash('Please complete all fields')
+                flash("Please reconfirm details")
                 return redirect('/user/login')
+        else:
+            flash('Please complete all fields')
+            return redirect('/user/login')
 
 
 @app.route('/user/settings')
@@ -205,42 +198,37 @@ def layout():
 @app.route('/book/salon/<id>', methods=['POST', 'GET'])
 def book_salon(id):
     loggedin = session.get('loggedin')
-    salon_loggedin = session.get('salon_loggedin')
 
-    if salon_loggedin != None:
-        flash('You can only book a salon with a customer account, please login to your customer account.', 'error')
-        return redirect('/all/salons')
-    else:
-        if loggedin == None:
-            return redirect('/user/login')
-        else:    
-            if request.method == 'GET':
-                all_salons = Salon.query.get(id)
-                servs = Service.query.filter(Service.serv_salonid == id).all()
-                cust_deets = Customer.query.get(loggedin)
-                return render_template('user/booksalon.html', all_salons=all_salons, servs=servs, cust_deets=cust_deets)
-            else:
-                s = Salon.query.get(id)
-                cust = Customer.query.get(loggedin)
+    if loggedin == None:
+        return redirect('/user/login')
+    else:    
+        if request.method == 'GET':
+            all_salons = Salon.query.get(id)
+            servs = Service.query.filter(Service.serv_salonid == id).all()
+            cust_deets = Customer.query.get(loggedin)
+            return render_template('user/booksalon.html', all_salons=all_salons, servs=servs, cust_deets=cust_deets)
+        else:
+            s = Salon.query.get(id)
+            cust = Customer.query.get(loggedin)
 
-                date = request.form.get('date')
-                time = request.form.get('time')
-                servs = request.form.getlist('services')
+            date = request.form.get('date')
+            time = request.form.get('time')
+            servs = request.form.getlist('services')
 
-                b = Booking(book_salonid=s.salon_id, book_custid=loggedin,
-                            book_date=date, book_time=time)
-                db.session.add(b)
-                db.session.commit()
+            b = Booking(book_salonid=s.salon_id, book_custid=loggedin,
+                        book_date=date, book_time=time)
+            db.session.add(b)
+            db.session.commit()
 
-                for v in servs:
-                    bserv = Book_service(bserv_bookid=b.book_id, bserv_servid=v)
-                    db.session.add(bserv)
-                db.session.commit()
+            for v in servs:
+                bserv = Book_service(bserv_bookid=b.book_id, bserv_servid=v)
+                db.session.add(bserv)
+            db.session.commit()
 
-                bookid = b.book_id
-                session['booked'] = bookid
+            bookid = b.book_id
+            session['booked'] = bookid
 
-                return redirect('/booking/summary')
+            return redirect('/booking/summary')
 
 
 @app.route('/booking/summary', methods=['POST', 'GET'])

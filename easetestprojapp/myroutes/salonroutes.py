@@ -72,39 +72,32 @@ def salon_signup_submit():
 
 @app.route('/salon/login', methods=['POST','GET'])
 def salon_login():
-    loggedin = session.get('loggedin')
-    salon_loggedin = session.get('salon_loggedin')
-
-    if (loggedin != None) or (salon_loggedin != None):
-        flash('Please log out of current account, to login to another one')
-        return redirect('/')
+    if request.method == 'GET':
+        return render_template('salon/login.html')
     else:
-        if request.method == 'GET':
-            return render_template('salon/login.html')
+        username = request.form.get('username')
+        pwd = request.form.get('pwd')
+
+        if username == '' or pwd == '':
+            flash('Please Complete all fields')
+            return redirect('/salon/login')
         else:
-            username = request.form.get('username')
-            pwd = request.form.get('pwd')
+            salondeets = Salon.query.filter(Salon.salon_email==username).first()
+            
+            if salondeets:
+                chk = salondeets.salon_pwd
+                formatted = check_password_hash(chk,pwd)
 
-            if username == '' or pwd == '':
-                flash('Please Complete all fields')
-                return redirect('/salon/login')
-            else:
-                salondeets = Salon.query.filter(Salon.salon_email==username).first()
-                
-                if salondeets:
-                    chk = salondeets.salon_pwd
-                    formatted = check_password_hash(chk,pwd)
-
-                    if formatted:
-                        id = salondeets.salon_id
-                        session['salon_loggedin'] = id
-                        return redirect('/salon/dashboard')
-                    else:
-                        flash('Invalid Credentials')
-                        return redirect('/salon/login')
+                if formatted:
+                    id = salondeets.salon_id
+                    session['salon_loggedin'] = id
+                    return redirect('/salon/dashboard')
                 else:
-                    flash("Please reconfirm details")
+                    flash('Invalid Credentials')
                     return redirect('/salon/login')
+            else:
+                flash("Please reconfirm details")
+                return redirect('/salon/login')
 
 
 @app.route('/salon/dashboard')
