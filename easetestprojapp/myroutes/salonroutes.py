@@ -287,29 +287,29 @@ def salon_token_reset(token):
         try:
             password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
             email = password_reset_serializer.loads(token, salt='password-reset-salt', max_age=7200)
+
+            pwd = request.form.get('resetpwd')
+            pwdreg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$"
+
+            if pwd != '':
+                if re.match(pwdreg, pwd) == None:
+                    flash("Please entered password should contain at least; one capital Letter, one special character, one digit and length should be at least 8.")
+                    redirect('/salon/reset/<token>')
+                else:     
+                    salon = Salon.query.filter(Salon.salon_email==email).first()
+                    
+                    salon.salon_pwd = generate_password_hash(pwd)
+                    db.session.add(salon)
+                    db.session.commit()
+                    flash('Your password has been updated!', 'success')
+                    return redirect(url_for('salon_login'))
+            else:
+                flash('Please input a new password', 'error')
+                return redirect('/salon/reset/<token>')
         except:
             flash('The password reset link is invalid or has expired.', 'error')
-            return redirect(url_for('salon_login'))
+            return redirect('/salon/reset/password')
 
-        pwd = request.form.get('resetpwd')
-        pwdreg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$"
-
-        if pwd != '':
-            if re.match(pwdreg, pwd) == None:
-                flash("Please entered password should contain at least; one capital Letter, one special character, one digit and length should be at least 8.")
-                redirect('/salon/reset/<token>')
-            else:     
-                salon = Salon.query.filter(Salon.salon_email==email).first()
-                
-                salon.salon_pwd = generate_password_hash(pwd)
-                db.session.add(salon)
-                db.session.commit()
-                flash('Your password has been updated!', 'success')
-                return redirect(url_for('salon_login'))
-        else:
-            flash('Please input a new password', 'error')
-            return redirect('/salon/reset/<token>')
-    
     return redirect('/salon/login')
 
 

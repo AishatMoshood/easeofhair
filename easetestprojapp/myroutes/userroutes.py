@@ -414,11 +414,7 @@ def reset_pwd():
         email = request.form.get("forgotpwdemail")
 
         if email != '':
-            try:
-                user = Customer.query.filter(Customer.cust_email==email).first()
-            except:
-                flash('Invalid email address!', 'error')
-                return render_template('user/resetpassword.html', 'error')
+            user = Customer.query.filter(Customer.cust_email==email).first()
 
             if user:
                 def send_password_reset_link(user_email):
@@ -453,32 +449,30 @@ def token_reset(token):
     else:
         try:
             password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-            email = password_reset_serializer.loads(token, salt='password-reset-salt', max_age=7200)
+            email = password_reset_serializer.loads(token, salt='password-reset-salt', max_age=14400)
+
+            pwd = request.form.get('resetpwd')
+            pwdreg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$"
+
+            if pwd != '':
+                if re.match(pwdreg, pwd) == None:
+                    flash("Please entered password should contain at least; one capital Letter, one special character, one digit and length should be at least 8.")
+                    return redirect('/reset/<token>')
+                else:
+                    user = Customer.query.filter(Customer.cust_email==email).first()
+                    user.cust_pwd = generate_password_hash(pwd)
+                    db.session.add(user)
+                    db.session.commit()
+                    flash('Your password has been updated!', 'success')
+                    return redirect(url_for('user_login'))
+            else:
+                flash('Please input a new password', 'error')
+                return redirect('/reset/<token>')
         except:
             flash('The password reset link is invalid or has expired.', 'error')
-            return redirect(url_for('user_login'))
+            return redirect('reset/password')
 
-        pwd = request.form.get('resetpwd')
-        pwdreg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$"
-
-        if pwd != '':
-            if re.match(pwdreg, pwd) == None:
-                flash("Please entered password should contain at least; one capital Letter, one special character, one digit and length should be at least 8.")
-                return redirect('/reset/<token>')
-            else:
-                user = Customer.query.filter(Customer.cust_email==email).first()
-                user.cust_pwd = generate_password_hash(pwd)
-                db.session.add(user)
-                db.session.commit()
-                flash('Your password has been updated!', 'success')
-                return redirect(url_for('user_login'))
-        else:
-            flash('Please input a new password', 'error')
-            return redirect('/reset/<token>')
-    
-    return redirect('/user/login')
-
-
+        
 @app.errorhandler(404)
 def errorpage(Error):
     return render_template("user/error.html"),404
