@@ -202,7 +202,7 @@ input[type="submit"] {
 }
 
 .flash {
-  font-size: 12px;
+  font-size: 11px;
   margin: 15px 0;
 }
 
@@ -284,6 +284,10 @@ input[type="submit"] {
   .login-form .pwd-input, .flash{
     width: 215% !important;
     margin: 0 auto 15px;
+  }
+
+  .flash {
+    width: 80%;
   }
   
 }
