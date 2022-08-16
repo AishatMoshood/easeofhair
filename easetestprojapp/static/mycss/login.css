@@ -281,7 +281,7 @@ input[type="submit"] {
   }
 
   .login-form .pwd-input, .flash{
-    width: 230% !important;
+    width: 210% !important;
     margin: 0 auto 15px;
   }
   
@@ -311,7 +311,7 @@ input[type="submit"] {
   }
 
   .login-form .pwd-input, .flash{
-    width: 210% !important;
+    width: 190% !important;
   }
 }
 
@@ -335,6 +335,6 @@ input[type="submit"] {
   }
 
   .login-form .pwd-input, .flash{
-    width: 190% !important;
+    width: 170% !important;
   }
 }
