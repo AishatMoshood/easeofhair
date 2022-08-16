@@ -470,7 +470,7 @@ def token_reset(token):
                 return redirect('/reset/<token>')
         except:
             flash('The password reset link is invalid or has expired.', 'error')
-            return redirect('reset/password')
+            return redirect('/user/reset/password')
 
         
 @app.errorhandler(404)
