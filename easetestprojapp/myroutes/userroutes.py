@@ -483,6 +483,7 @@ def token_reset(token):
         if pwd != '':
             if re.match(pwdreg, pwd) == None:
                 flash("Please entered password should contain at least; one capital Letter, one special character, one digit and length should be at least 8.")
+                return redirect('/reset/<token>')
             else:
                 user = Customer.query.filter(Customer.cust_email==email).first()
                 user.cust_pwd = generate_password_hash(pwd).decode('utf-8')
@@ -492,6 +493,7 @@ def token_reset(token):
                 return redirect(url_for('user_login'))
         else:
             flash('Please input a new password', 'error')
+            return redirect('/reset/<token>')
     
     return redirect('/user/login')
 

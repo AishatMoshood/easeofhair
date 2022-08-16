@@ -311,6 +311,7 @@ def salon_token_reset(token):
         if pwd != '':
             if re.match(pwdreg, pwd) == None:
                 flash("Please entered password should contain at least; one capital Letter, one special character, one digit and length should be at least 8.")
+                redirect('/salon/reset/<token>')
             else:     
                 salon = Salon.query.filter(Salon.salon_email==email).first()
                 
@@ -321,6 +322,7 @@ def salon_token_reset(token):
                 return redirect(url_for('salon_login'))
         else:
             flash('Please input a new password', 'error')
+            return redirect('/salon/reset/<token>')
     
     return redirect('/salon/login')
 
