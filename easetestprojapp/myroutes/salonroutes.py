@@ -301,7 +301,7 @@ def salon_token_reset(token):
             else:     
                 salon = Salon.query.filter(Salon.salon_email==email).first()
                 
-                salon.salon_pwd = generate_password_hash(pwd).decode('utf-8')
+                salon.salon_pwd = generate_password_hash(pwd)
                 db.session.add(salon)
                 db.session.commit()
                 flash('Your password has been updated!', 'success')

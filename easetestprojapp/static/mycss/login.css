@@ -201,6 +201,21 @@ input[type="submit"] {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.flash {
+  font-size: 12px;
+}
+
+.rst-pwd {
+  margin-bottom: 30px;
+}
+
+@media screen and  (min-width: 1000px){
+  .rst-pwd {
+    margin-bottom: 50px;
+  }
+}
+
+
 @media screen and  (max-width: 1025px){
   .navbar-collapse a {
     font-size: 15px;
@@ -264,6 +279,11 @@ input[type="submit"] {
     font-size: 14px;
     width: 80%;
   }
+
+  .login-form .pwd-input, .flash{
+    width: 230% !important;
+    margin: 0 auto 15px;
+  }
   
 }
 
@@ -289,6 +309,10 @@ input[type="submit"] {
     font-size: 13px;
     white-space: wrap;
   }
+
+  .login-form .pwd-input, .flash{
+    width: 210% !important;
+  }
 }
 
 @media screen and (max-width: 321px){
@@ -308,5 +332,9 @@ input[type="submit"] {
   .heading-reset {
     font-size: 10px;
     white-space: wrap;
+  }
+
+  .login-form .pwd-input, .flash{
+    width: 190% !important;
   }
 }

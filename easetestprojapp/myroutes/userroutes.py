@@ -467,7 +467,7 @@ def token_reset(token):
                 return redirect('/reset/<token>')
             else:
                 user = Customer.query.filter(Customer.cust_email==email).first()
-                user.cust_pwd = generate_password_hash(pwd).decode('utf-8')
+                user.cust_pwd = generate_password_hash(pwd)
                 db.session.add(user)
                 db.session.commit()
                 flash('Your password has been updated!', 'success')
