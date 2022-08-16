@@ -286,7 +286,7 @@ def salon_token_reset(token):
     else:
         try:
             password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-            email = password_reset_serializer.loads(token, salt='password-reset-salt', max_age=3600)
+            email = password_reset_serializer.loads(token, salt='password-reset-salt', max_age=7200)
         except:
             flash('The password reset link is invalid or has expired.', 'error')
             return redirect(url_for('salon_login'))

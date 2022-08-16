@@ -203,6 +203,7 @@ input[type="submit"] {
 
 .flash {
   font-size: 12px;
+  margin: 15px 0;
 }
 
 .rst-pwd {
@@ -281,7 +282,7 @@ input[type="submit"] {
   }
 
   .login-form .pwd-input, .flash{
-    width: 210% !important;
+    width: 215% !important;
     margin: 0 auto 15px;
   }
   
@@ -311,7 +312,7 @@ input[type="submit"] {
   }
 
   .login-form .pwd-input, .flash{
-    width: 190% !important;
+    width: 195% !important;
   }
 }
 
@@ -335,6 +336,6 @@ input[type="submit"] {
   }
 
   .login-form .pwd-input, .flash{
-    width: 170% !important;
+    width: 178% !important;
   }
 }
