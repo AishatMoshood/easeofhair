@@ -8,14 +8,7 @@ from easetestprojapp.mymodels import Booking, Customer, Salon, Service, Service_
 
 @app.route('/salon/signup')
 def salon_signup():
-    loggedin = session.get('loggedin')
-    salon_loggedin = session.get('salon_loggedin')
-
-    if (loggedin != None) or (salon_loggedin != None):
-        flash('Please log out of current account to sign up')
-        return redirect('/')
-    else:
-        return render_template('user/signup.html')
+    return render_template('user/signup.html')
 
 
 @app.route('/salon/signup/submit', methods=['POST'])

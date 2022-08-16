@@ -29,14 +29,7 @@ def home():
 
 @app.route('/signup')
 def signup():
-    loggedin = session.get('loggedin')
-    salon_loggedin = session.get('salon_loggedin')
-
-    if (loggedin != None) or (salon_loggedin != None):
-        flash('Please log out of current account to sign up')
-        return redirect('/')
-    else:
-        return render_template('user/signup.html')
+  return render_template('user/signup.html')
 
 
 @app.route('/signup/submit', methods=['POST'])
