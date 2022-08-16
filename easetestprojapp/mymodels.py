@@ -1,5 +1,6 @@
 import datetime
 from easetestprojapp import db
+from sqlalchemy import Enum
 
 
 class Customer(db.Model): 
@@ -8,7 +9,7 @@ class Customer(db.Model):
     cust_lname = db.Column(db.String(255), nullable=False)
     cust_email = db.Column(db.String(255), nullable=False)
     cust_pwd = db.Column(db.String(255), nullable=False)
-    cust_gender = db.Column(db.Enum('male','female'), name='gender_types', nullable=True)
+    cust_gender = db.Column(db.Enum('male','female', name='gender_types'),  nullable=True)
     cust_phone = db.Column(db.String(255), nullable=True)
     cust_img = db.Column(db.String(255), nullable=True)
     cust_reg = db.Column(db.DateTime(), default=datetime.datetime.utcnow())
@@ -43,7 +44,7 @@ class Salon(db.Model):
     salon_pwd  = db.Column(db.String(255), nullable=False)
     salon_address  = db.Column(db.String(255), nullable=False)
     salon_phone = db.Column(db.String(255), nullable=False)
-    salon_status = db.Column(db.Enum('1','0'), name='salon_stat', nullable=False, default='0')
+    salon_status = db.Column(db.Enum('1','0', name='salon_stat'), nullable=False, default='0')
     salon_reg = db.Column(db.DateTime(), default=datetime.datetime.utcnow())
 
     #foreign Keys
@@ -96,7 +97,7 @@ class Subscription_type(db.Model):
 class Salon_subscription(db.Model):
     sub_id = db.Column(db.Integer(), primary_key=True,autoincrement=True)
     sub_amt =  db.Column(db.Float(), nullable=False)
-    sub_stat =  db.Column(db.Enum('paid','not paid', 'incomplete'), name='subscription_stat', nullable=False)
+    sub_stat =  db.Column(db.Enum('paid','not paid', 'incomplete', name='subscription_stat'), nullable=False)
     sub_reg =  db.Column(db.DateTime(), default=datetime.datetime.utcnow())
 
     #Foreign Keys
@@ -166,7 +167,7 @@ class Book_service(db.Model):
 class Payment(db.Model): 
     pay_id = db.Column(db.Integer(), primary_key=True,autoincrement=True)
     pay_amt =  db.Column(db.Float(), nullable=False)
-    pay_stat =  db.Column(db.Enum('completed','incomplete','in progress'), name='payment_stat', nullable=False)
+    pay_stat =  db.Column(db.Enum('completed','incomplete','in progress', name='payment_stat'), nullable=False)
     pay_reg = db.Column(db.DateTime(), default=datetime.datetime.utcnow())
     pay_refno = db.Column(db.String(255), nullable=False)
 
