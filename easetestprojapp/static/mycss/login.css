@@ -286,10 +286,6 @@ input[type="submit"] {
     margin: 0 auto 15px;
   }
 
-  .flash {
-    width: 80%;
-  }
-  
 }
 
 @media screen and (max-width: 376px){
